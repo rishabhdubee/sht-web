@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Home Tuitions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2430; --paper:#F5F1E7; --slate:#5B6B79; --line:#E4E0D2;
+    --blue:#2C5F6F; --blue-deep:#173842; --gold:#C9973F; --gold-light:#E7C685; --gold-deep:#9C7328;
+    --whatsapp:#25D366; --card:#FFFFFF; --radius:16px; --red:#B33636;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:'Inter', 'Segoe UI', Helvetica, Arial, sans-serif; background:
+    radial-gradient(circle at 15% 0%, #FAF7EE 0%, var(--paper) 45%);
+    color:var(--ink);
+  }
+  .display{font-family:'Playfair Display', Georgia, serif;}
+  header.top{
+    background:linear-gradient(135deg, var(--blue-deep) 0%, var(--blue) 60%, #235A67 100%);
+    color:#fff; padding:32px 20px 38px; text-align:center; position:relative; overflow:hidden;
+    box-shadow:0 6px 30px rgba(23,56,66,0.35);
+  }
+  header.top::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 78% -10%, rgba(231,198,133,0.35), transparent 55%);
+  }
+  header.top::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:3px;
+    background:linear-gradient(90deg, transparent, var(--gold-light), var(--gold), var(--gold-light), transparent);
+  }
+  header.top h1{margin:0 0 6px; font-size:28px; letter-spacing:0.3px; position:relative; font-weight:700;
+    background:linear-gradient(90deg, #fff, var(--gold-light), #fff);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  header.top p{margin:0 0 10px; opacity:0.88; font-size:13px; position:relative; letter-spacing:0.2px;}
+  .teacher-link{
+    position:relative; display:inline-block; font-size:12px; color:#fff;
+    background:rgba(255,255,255,0.12); border:1px solid rgba(231,198,133,0.5);
+    padding:7px 16px; border-radius:20px; text-decoration:none; font-weight:600;
+    transition:background .2s;
+  }
+  .teacher-link:hover{background:rgba(231,198,133,0.22);}
+  main{max-width:640px; margin:0 auto; padding:26px 16px 60px;}
+  .card{
+    background:var(--card); border-radius:var(--radius); padding:20px 22px;
+    box-shadow:0 6px 24px rgba(23,56,66,0.08); border:1px solid var(--line); margin-bottom:20px;
+    transition:box-shadow .25s, transform .25s;
+  }
+  .card:hover{box-shadow:0 10px 32px rgba(23,56,66,0.12);}
+  .field{display:flex; flex-direction:column; gap:5px; margin-bottom:12px;}
+  .field.full{grid-column:1/-1;}
+  label{font-size:11px; text-transform:uppercase; letter-spacing:0.6px; color:var(--slate); font-weight:600;}
+  input, select{padding:11px 12px; border-radius:9px; border:1px solid var(--line); background:#FBFAF5; font-size:14px; color:var(--ink); width:100%; transition:border-color .2s, box-shadow .2s;}
+  input:focus, select:focus{outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,151,63,0.15);}
+  .filter-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .btn{
+    width:100%; padding:13px; border:none; border-radius:10px;
+    background:linear-gradient(135deg, var(--blue-deep), var(--blue));
+    color:#fff; font-size:15px; font-weight:700; cursor:pointer; margin-top:6px;
+    box-shadow:0 4px 14px rgba(23,56,66,0.25); transition:transform .15s, box-shadow .15s;
+  }
+  .btn:hover{transform:translateY(-1px); box-shadow:0 6px 20px rgba(23,56,66,0.32);}
+  .btn:active{transform:translateY(0);}
+  .btn.gold{background:linear-gradient(135deg, var(--gold-deep), var(--gold), var(--gold-light)); box-shadow:0 4px 14px rgba(201,151,63,0.35);}
+  .btn.ghost{background:transparent; color:var(--red); border:1px solid var(--red); font-weight:600; box-shadow:none;}
+  .tabs2{display:flex; gap:8px; margin-bottom:16px;}
+  .tabs2 button{flex:1; padding:10px; border:1px solid var(--line); background:#FAFAF7; border-radius:9px; font-weight:700; font-size:13px; cursor:pointer; color:var(--slate);}
+  .tabs2 button.active{background:var(--blue-deep); color:#fff; border-color:var(--blue-deep);}
+  .msg{font-size:13px; padding:10px 12px; border-radius:9px; margin-bottom:14px;}
+  .msg.error{background:#FBE0E0; color:var(--red);}
+  .msg.ok{background:#DCF3E6; color:#1F8A5C;}
+  .hidden{display:none !important;}
+  .results-count{font-size:13px; color:var(--slate); margin:4px 2px 14px;}
+  .teacher-card{background:var(--card); border-radius:var(--radius); border:1px solid var(--line); padding:16px; margin-bottom:14px; display:flex; gap:14px; box-shadow:0 3px 12px rgba(23,56,66,0.06); transition:box-shadow .2s, transform .2s;}
+  .teacher-card:hover{box-shadow:0 8px 24px rgba(23,56,66,0.12); transform:translateY(-1px);}
+  .avatar{width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg, var(--gold-deep), var(--gold), var(--gold-light)); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px; flex-shrink:0; font-family:'Playfair Display', serif; box-shadow:0 0 0 3px #fff, 0 0 0 4px rgba(201,151,63,0.3);}
+  .t-body{flex:1; min-width:0;}
+  .t-name{font-weight:700; font-size:15.5px;}
+  .badge{font-size:10px; background:linear-gradient(135deg, #E6F4EF, #D3EEE1); color:#1F8A5C; padding:3px 8px; border-radius:20px; font-weight:700; margin-left:6px; letter-spacing:0.3px;}
+  .t-meta{font-size:12.5px; color:var(--slate); margin:3px 0 8px;}
+  .tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;}
+  .tag{font-size:11px; background:#EEF3F1; color:var(--blue-deep); padding:3px 9px; border-radius:20px; font-weight:600;}
+  .wa-btn{display:inline-flex; align-items:center; gap:7px; background:linear-gradient(135deg, var(--whatsapp), #1FBE5A); color:#fff; padding:9px 16px; border-radius:9px; font-weight:700; font-size:13px; border:none; cursor:pointer; box-shadow:0 3px 10px rgba(37,211,102,0.3); transition:transform .15s;}
+  .wa-btn:hover{transform:translateY(-1px);}
+
+  /* Multi-select chip picker (subjects / boards / classes) */
+  .multiselect{border:1px solid var(--line); border-radius:9px; background:#FBFAF5; padding:8px; margin-bottom:0;}
+  .chips{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px;}
+  .chips:empty{margin-bottom:0;}
+  .chip{
+    display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600;
+    background:linear-gradient(135deg, #FBF3E2, #F3E3BE); color:var(--gold-deep);
+    border:1px solid rgba(201,151,63,0.4); padding:5px 6px 5px 11px; border-radius:20px;
+  }
+  .chip-x{
+    border:none; background:rgba(201,151,63,0.25); color:var(--gold-deep); width:16px; height:16px;
+    border-radius:50%; font-size:11px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .chip-x:hover{background:rgba(201,151,63,0.45);}
+  .multiselect select{border:none; background:transparent; padding:4px 2px; font-size:13px; color:var(--slate);}
+  .multiselect select:focus{box-shadow:none;}
+  .empty{text-align:center; padding:30px 20px; color:var(--slate); font-size:13px;}
+  .status-pill{display:inline-block; font-size:11px; font-weight:700; padding:4px 10px; border-radius:20px; margin-bottom:14px;}
+  .status-pending{background:#FDF0DA; color:#A9740F;}
+  .status-approved{background:#DCF3E6; color:#1F8A5C;}
+  .status-rejected{background:#FBE0E0; color:#B33636;}
+  .toggle-row{display:flex; justify-content:space-between; align-items:center; background:#FAFAF7; border:1px solid var(--line); border-radius:9px; padding:10px 12px; margin-bottom:14px;}
+  .stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;}
+  .stat{background:#FAFAF7; border:1px solid var(--line); border-radius:10px; padding:12px; text-align:center;}
+  .stat .num{font-size:20px; font-weight:800; color:var(--blue-deep); font-family:Georgia, serif;}
+  .stat .lbl{font-size:10.5px; color:var(--slate); text-transform:uppercase;}
+  .block-title{font-size:14px; font-weight:700; margin:22px 0 10px; color:var(--blue-deep);}
+  .admin-row{display:flex; justify-content:space-between; align-items:center; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:10px; gap:10px;}
+  .who{font-weight:700; font-size:14px;}
+  .sub{font-size:12px; color:var(--slate);}
+  .pill-row{display:flex; gap:6px; flex-shrink:0;}
+  .pill{border:none; padding:7px 12px; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer;}
+  .pill.approve{background:#DCF3E6; color:#1F8A5C;}
+  .pill.reject{background:#FBE0E0; color:#B33636;}
+  .pill.verify{background:#E6EEFB; color:#2C5F6F;}
+  .link-back{display:block; text-align:center; font-size:12.5px; color:var(--slate); margin-top:10px; text-decoration:none;}
+  .logout-wrap{text-align:right; margin-bottom:6px;}
+  .logout-wrap button{background:none; border:none; color:var(--slate); font-size:12.5px; text-decoration:underline; cursor:pointer;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1 id="page-title">Special Home Tuitions</h1>
+  <p id="page-sub">Find verified teachers near you — connect on WhatsApp in one tap</p>
+  <a class="teacher-link hidden" href="#teacher" id="teacher-link">Are you a teacher? Register / Login →</a>
+</header>
+
+<main>
+
+  <!-- ============ PARENT VIEW ============ -->
+  <section id="view-parent">
+    <div class="card">
+      <div class="filter-grid">
+        <div class="field">
+          <label>Subject</label>
+          <select id="f-subject"><option value="">Any</option><option>Mathematics</option><option>Science</option><option>English</option><option>Physics</option><option>Chemistry</option><option>Accounts</option></select>
+        </div>
+        <div class="field">
+          <label>Board</label>
+          <select id="f-board"><option value="">Any</option><option>CBSE</option><option>ICSE</option><option>State Board</option><option>IB</option></select>
+        </div>
+        <div class="field">
+          <label>Class</label>
+          <select id="f-class"><option value="">Any</option><option>1-5</option><option>6-8</option><option>9-10</option><option>11-12</option></select>
+        </div>
+        <div class="field">
+          <label>Mode</label>
+          <select id="f-mode"><option value="">Any</option><option>Online</option><option>Offline</option></select>
+        </div>
+        <div class="field full">
+          <label>Pincode</label>
+          <input id="f-pincode" placeholder="e.g. 400075" inputmode="numeric" maxlength="6">
+        </div>
+      </div>
+      <button class="btn" id="search-btn">Search Teachers</button>
+    </div>
+    <div class="results-count" id="results-count"></div>
+    <div id="results"><div class="empty">Loading teachers…</div></div>
+  </section>
+
+  <!-- ============ TEACHER VIEW ============ -->
+  <section id="view-teacher" class="hidden">
+    <div class="card" id="teacher-auth-card">
+      <div class="tabs2">
+        <button class="active" id="tab-login">Login</button>
+        <button id="tab-signup">Register</button>
+      </div>
+      <div id="teacher-msg"></div>
+      <div id="login-form">
+        <div class="field"><label>Username</label><input id="login-username"></div>
+        <div class="field"><label>Password</label><input id="login-password" type="password"></div>
+        <button class="btn" id="login-btn">Log In</button>
+        <a href="#" class="link-back" id="forgot-link">Forgot password? (OTP recovery coming soon)</a>
+      </div>
+      <div id="signup-form" class="hidden">
+        <div class="field"><label>Full name</label><input id="su-name"></div>
+        <div class="field"><label>Username</label><input id="su-username"></div>
+        <div class="field"><label>Password</label><input id="su-password" type="password" placeholder="Min 6 characters"></div>
+        <div class="field"><label>Phone (future OTP recovery)</label><input id="su-phone" inputmode="numeric" maxlength="10"></div>
+        <div class="field"><label>WhatsApp number</label><input id="su-whatsapp" placeholder="919876543210"></div>
+        <div class="field"><label>Subjects</label>
+          <div class="multiselect" id="su-subjects"><div class="chips" id="su-subjects-chips"></div><select id="su-subjects-select"></select></div>
+        </div>
+        <div class="field"><label>Boards</label>
+          <div class="multiselect" id="su-boards"><div class="chips" id="su-boards-chips"></div><select id="su-boards-select"></select></div>
+        </div>
+        <div class="field"><label>Classes</label>
+          <div class="multiselect" id="su-classes"><div class="chips" id="su-classes-chips"></div><select id="su-classes-select"></select></div>
+        </div>
+        <div class="field"><label>Mode</label><select id="su-mode"><option>Online</option><option>Offline</option><option>Both</option></select></div>
+        <div class="field"><label>Pincode</label><input id="su-pincode" inputmode="numeric" maxlength="6"></div>
+        <div class="field"><label>Experience</label><input id="su-exp" placeholder="e.g. 5 yrs"></div>
+        <button class="btn gold" id="signup-btn">Submit for Approval</button>
+      </div>
+      <a href="#" class="link-back">← Back to teacher search</a>
+    </div>
+
+    <div class="card hidden" id="teacher-dash-card">
+      <div class="logout-wrap"><button id="teacher-logout-btn">Log out</button></div>
+      <div id="status-pill-wrap"></div>
+      <div class="stat-grid">
+        <div class="stat"><div class="num" id="stat-clicks">0</div><div class="lbl">WhatsApp Clicks</div></div>
+        <div class="stat"><div class="num" id="stat-active">—</div><div class="lbl">Listing Status</div></div>
+      </div>
+      <div class="toggle-row"><span>Listing active (visible to parents)</span><input type="checkbox" id="active-toggle"></div>
+      <div class="field"><label>Full name</label><input id="ed-name"></div>
+      <div class="field"><label>WhatsApp number</label><input id="ed-whatsapp"></div>
+      <div class="field"><label>Subjects</label>
+        <div class="multiselect" id="ed-subjects"><div class="chips" id="ed-subjects-chips"></div><select id="ed-subjects-select"></select></div>
+      </div>
+      <div class="field"><label>Boards</label>
+        <div class="multiselect" id="ed-boards"><div class="chips" id="ed-boards-chips"></div><select id="ed-boards-select"></select></div>
+      </div>
+      <div class="field"><label>Classes</label>
+        <div class="multiselect" id="ed-classes"><div class="chips" id="ed-classes-chips"></div><select id="ed-classes-select"></select></div>
+      </div>
+      <div class="field"><label>Mode</label><select id="ed-mode"><option>Online</option><option>Offline</option><option>Both</option></select></div>
+      <div class="field"><label>Pincode</label><input id="ed-pincode"></div>
+      <div class="field"><label>Experience</label><input id="ed-exp"></div>
+      <button class="btn" id="save-btn">Save Changes</button>
+    </div>
+  </section>
+
+  <!-- ============ ADMIN VIEW ============ -->
+  <section id="view-admin" class="hidden">
+    <div class="card" id="admin-login-card">
+      <div id="admin-msg"></div>
+      <div class="field"><label>Admin Email</label><input id="admin-email" type="email"></div>
+      <div class="field"><label>Password</label><input id="admin-password" type="password"></div>
+      <button class="btn" id="admin-login-btn">Log In</button>
+    </div>
+    <div class="hidden" id="admin-dash">
+      <div class="logout-wrap"><button id="admin-logout-btn">Log out</button></div>
+      <div class="stat-grid">
+        <div class="stat"><div class="num" id="a-stat-total">—</div><div class="lbl">Total Teachers</div></div>
+        <div class="stat"><div class="num" id="a-stat-pending">—</div><div class="lbl">Pending</div></div>
+      </div>
+      <div class="block-title">Pending Approval</div>
+      <div id="pending-list"><div class="empty">Loading…</div></div>
+      <div class="block-title">Approved Teachers</div>
+      <div id="approved-list"><div class="empty">Loading…</div></div>
+    </div>
+  </section>
+
+</main>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+    onAuthStateChanged, signOut
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  import {
+    getFirestore, collection, doc, setDoc, getDoc, getDocs, updateDoc,
+    query, where, increment, serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  // ── Fill this in from your Firebase project (Project Settings → General → Your apps) ──
+  const firebaseConfig = {
+    apiKey: "AIzaSyCKLVXyqNlOQJ675tKB7vaQHmJXlH7vqwU",
+    authDomain: "sht-app-e6cf8.firebaseapp.com",
+    projectId: "sht-app-e6cf8",
+    storageBucket: "sht-app-e6cf8.firebasestorage.app",
+    messagingSenderId: "15096527758",
+    appId: "1:15096527758:web:520b23be74ac5be0bec2df",
+    measurementId: "G-QQFNLZPL3K"
+  };
+  const USERNAME_AUTH_DOMAIN = "sht-teacher.internal";
+
+  const app = initializeApp(firebaseConfig);
+  const teacherAuth = getAuth(app);              // used for teacher login/signup
+  const db = getFirestore(app);
+  const usernameToEmail = (u) => `${u.trim().toLowerCase()}@${USERNAME_AUTH_DOMAIN}`;
+  const splitList = (s) => s.split(",").map(x=>x.trim()).filter(Boolean);
+  const initials = (name) => name.split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase();
+
+  // ---------- Dropdown + chip multi-select (subjects / boards / classes) ----------
+  const OPTION_LISTS = {
+    subjects: ["Mathematics","Science","English","Physics","Chemistry","Biology","Accounts","Economics","Computer Science","Hindi","Marathi","Social Studies"],
+    boards: ["CBSE","ICSE","State Board","IB","IGCSE"],
+    classes: ["1-5","6-8","9-10","11-12"]
+  };
+  const multiSelectState = {};
+  function renderChips(prefix){
+    const el = document.getElementById(prefix+"-chips");
+    el.innerHTML = multiSelectState[prefix].map(v =>
+      `<span class="chip">${v}<button type="button" class="chip-x" data-prefix="${prefix}" data-val="${v}">×</button></span>`
+    ).join("");
+    el.querySelectorAll(".chip-x").forEach(btn=>{
+      btn.onclick = () => {
+        multiSelectState[prefix] = multiSelectState[prefix].filter(v => v !== btn.dataset.val);
+        renderChips(prefix);
+      };
+    });
+  }
+  function setupMultiSelect(prefix, listKey, initial){
+    multiSelectState[prefix] = [...(initial||[])];
+    const select = document.getElementById(prefix+"-select");
+    select.innerHTML = '<option value="">+ Add ' + listKey.slice(0,-1) + '</option>' +
+      OPTION_LISTS[listKey].map(o=>`<option value="${o}">${o}</option>`).join("");
+    select.onchange = () => {
+      const v = select.value;
+      if(v && !multiSelectState[prefix].includes(v)) multiSelectState[prefix].push(v);
+      select.value = "";
+      renderChips(prefix);
+    };
+    renderChips(prefix);
+  }
+  setupMultiSelect("su-subjects", "subjects");
+  setupMultiSelect("su-boards", "boards");
+  setupMultiSelect("su-classes", "classes");
+
+  // ---------- ROUTER: only one section visible at a time ----------
+  const sections = { parent: "view-parent", teacher: "view-teacher", admin: "view-admin" };
+  function route(){
+    const hash = (location.hash || "").replace("#","");
+    const key = sections[hash] ? hash : "parent";
+    Object.values(sections).forEach(id => document.getElementById(id).classList.add("hidden"));
+    document.getElementById(sections[key]).classList.remove("hidden");
+
+    document.getElementById("teacher-link").classList.toggle("hidden", key !== "parent");
+    document.getElementById("page-title").textContent = key==="admin" ? "Special Home Tuitions — Admin" : key==="teacher" ? "Teacher Portal" : "Special Home Tuitions";
+    document.getElementById("page-sub").textContent = key==="admin" ? "Private — approvals and moderation only"
+      : key==="teacher" ? "Register your profile and manage it" : "Find verified teachers near you — connect on WhatsApp in one tap";
+  }
+  window.addEventListener("hashchange", route);
+  route();
+
+  // ================= PARENT SEARCH =================
+  let ALL_TEACHERS = [];
+  function renderResults(list){
+    const wrap = document.getElementById("results");
+    document.getElementById("results-count").textContent = list.length + (list.length===1 ? " teacher found" : " teachers found");
+    if(list.length===0){ wrap.innerHTML = '<div class="empty">No teachers match yet — try widening a filter.</div>'; return; }
+    wrap.innerHTML = list.map(t=>{
+      const msg = encodeURIComponent(`Hi ${t.name}, I found your profile on Special Home Tuitions. I'm looking for a ${t.subjects?.[0]||''} teacher for ${t.boards?.[0]||''} Class ${t.classes?.[0]||''} (${t.mode}). Are you available?`);
+      return `<div class="teacher-card">
+        <div class="avatar">${initials(t.name)}</div>
+        <div class="t-body">
+          <span class="t-name">${t.name}</span>${t.verified?'<span class="badge">VERIFIED</span>':''}
+          <div class="t-meta">${t.experience||''} experience · Pincode ${t.pincode||''}</div>
+          <div class="tags">${(t.subjects||[]).map(s=>`<span class="tag">${s}</span>`).join('')}${(t.boards||[]).map(b=>`<span class="tag">${b}</span>`).join('')}<span class="tag">${t.mode}</span></div>
+          <button class="wa-btn" data-id="${t.id}" data-phone="${t.whatsapp}" data-msg="${msg}">WhatsApp</button>
+        </div></div>`;
+    }).join("");
+    wrap.querySelectorAll(".wa-btn").forEach(btn=>{
+      btn.addEventListener("click", async ()=>{
+        const {id, phone, msg} = btn.dataset;
+        window.open(`https://wa.me/${phone}?text=${msg}`, "_blank");
+        try{ await updateDoc(doc(db,"teachers",id), { whatsappClicks: increment(1) }); }catch(e){}
+      });
+    });
+  }
+  function applyFilters(){
+    const subject = document.getElementById("f-subject").value;
+    const board = document.getElementById("f-board").value;
+    const cls = document.getElementById("f-class").value;
+    const mode = document.getElementById("f-mode").value;
+    const pincode = document.getElementById("f-pincode").value.trim();
+    renderResults(ALL_TEACHERS.filter(t=>{
+      if(subject && !(t.subjects||[]).includes(subject)) return false;
+      if(board && !(t.boards||[]).includes(board)) return false;
+      if(cls && !(t.classes||[]).includes(cls)) return false;
+      if(mode && t.mode!=="Both" && t.mode!==mode) return false;
+      if(pincode && t.pincode!==pincode) return false;
+      return true;
+    }));
+  }
+  document.getElementById("search-btn").onclick = applyFilters;
+  (async () => {
+    try{
+      const q = query(collection(db,"teachers"), where("status","==","approved"), where("active","==",true));
+      const snap = await getDocs(q);
+      ALL_TEACHERS = snap.docs.map(d=>({id:d.id, ...d.data()}));
+      renderResults(ALL_TEACHERS);
+    }catch(e){
+      document.getElementById("results").innerHTML = '<div class="empty">Could not load teachers — check your Firebase config.</div>';
+    }
+  })();
+
+  // ================= TEACHER PORTAL =================
+  document.getElementById("tab-login").onclick = () => {
+    document.getElementById("tab-login").classList.add("active");
+    document.getElementById("tab-signup").classList.remove("active");
+    document.getElementById("login-form").classList.remove("hidden");
+    document.getElementById("signup-form").classList.add("hidden");
+  };
+  document.getElementById("tab-signup").onclick = () => {
+    document.getElementById("tab-signup").classList.add("active");
+    document.getElementById("tab-login").classList.remove("active");
+    document.getElementById("signup-form").classList.remove("hidden");
+    document.getElementById("login-form").classList.add("hidden");
+  };
+  function tMsg(text,type){ document.getElementById("teacher-msg").innerHTML = `<div class="msg ${type}">${text}</div>`; }
+
+  // Friendlier text for common Firebase Auth error codes
+  function friendlyAuthError(err){
+    const code = err.code || "";
+    if(code.includes("invalid-credential") || code.includes("wrong-password") || code.includes("user-not-found"))
+      return "Incorrect username/email or password — or this account doesn't exist yet.";
+    if(code.includes("email-already-in-use")) return "That username is already taken — try another.";
+    if(code.includes("weak-password")) return "Password must be at least 6 characters.";
+    if(code.includes("invalid-email")) return "That doesn't look like a valid email/username format.";
+    return err.message.replace("Firebase: ","");
+  }
+
+  document.getElementById("signup-btn").onclick = async () => {
+    const name = document.getElementById("su-name").value.trim();
+    const username = document.getElementById("su-username").value.trim();
+    const password = document.getElementById("su-password").value;
+    if(!name || !username || password.length < 6){ tMsg("Fill in name, username, and a 6+ character password.","error"); return; }
+    try{
+      const cred = await createUserWithEmailAndPassword(teacherAuth, usernameToEmail(username), password);
+      await setDoc(doc(db,"teachers",cred.user.uid), {
+        name, username,
+        phone: document.getElementById("su-phone").value.trim(),
+        whatsapp: document.getElementById("su-whatsapp").value.trim(),
+        subjects: multiSelectState["su-subjects"],
+        boards: multiSelectState["su-boards"],
+        classes: multiSelectState["su-classes"],
+        mode: document.getElementById("su-mode").value,
+        pincode: document.getElementById("su-pincode").value.trim(),
+        experience: document.getElementById("su-exp").value.trim(),
+        status:"pending", active:true, verified:false, whatsappClicks:0, createdAt: serverTimestamp()
+      });
+      tMsg("Registered! Your profile is pending admin approval.","ok");
+    }catch(err){ tMsg(friendlyAuthError(err),"error"); }
+  };
+  document.getElementById("login-btn").onclick = async () => {
+    const username = document.getElementById("login-username").value.trim();
+    const password = document.getElementById("login-password").value;
+    if(!username || !password){ tMsg("Enter your username and password.","error"); return; }
+    try{ await signInWithEmailAndPassword(teacherAuth, usernameToEmail(username), password); }
+    catch(err){ tMsg(friendlyAuthError(err),"error"); }
+  };
+  document.getElementById("forgot-link").onclick = (e) => { e.preventDefault(); tMsg("OTP-based recovery will be added in the next phase.","ok"); };
+  document.getElementById("teacher-logout-btn").onclick = () => signOut(teacherAuth);
+
+  onAuthStateChanged(teacherAuth, async (user) => {
+    if(!user){
+      document.getElementById("teacher-auth-card").classList.remove("hidden");
+      document.getElementById("teacher-dash-card").classList.add("hidden");
+      return;
+    }
+    document.getElementById("teacher-auth-card").classList.add("hidden");
+    document.getElementById("teacher-dash-card").classList.remove("hidden");
+    const snap = await getDoc(doc(db,"teachers",user.uid));
+    if(!snap.exists()) return;
+    const t = snap.data();
+    const cls = t.status==="approved"?"status-approved":t.status==="rejected"?"status-rejected":"status-pending";
+    const lbl = t.status==="approved"?"Approved — live in search":t.status==="rejected"?"Rejected — contact admin":"Pending admin approval";
+    document.getElementById("status-pill-wrap").innerHTML = `<span class="status-pill ${cls}">${lbl}</span>`;
+    document.getElementById("stat-clicks").textContent = t.whatsappClicks||0;
+    document.getElementById("stat-active").textContent = t.active ? "Active":"Paused";
+    document.getElementById("active-toggle").checked = !!t.active;
+    document.getElementById("ed-name").value = t.name||"";
+    document.getElementById("ed-whatsapp").value = t.whatsapp||"";
+    setupMultiSelect("ed-subjects", "subjects", t.subjects||[]);
+    setupMultiSelect("ed-boards", "boards", t.boards||[]);
+    setupMultiSelect("ed-classes", "classes", t.classes||[]);
+    document.getElementById("ed-mode").value = t.mode||"Online";
+    document.getElementById("ed-pincode").value = t.pincode||"";
+    document.getElementById("ed-exp").value = t.experience||"";
+    document.getElementById("active-toggle").onchange = async (e) => {
+      await updateDoc(doc(db,"teachers",user.uid), { active: e.target.checked });
+      document.getElementById("stat-active").textContent = e.target.checked ? "Active":"Paused";
+    };
+    document.getElementById("save-btn").onclick = async () => {
+      await updateDoc(doc(db,"teachers",user.uid), {
+        name: document.getElementById("ed-name").value.trim(),
+        whatsapp: document.getElementById("ed-whatsapp").value.trim(),
+        subjects: multiSelectState["ed-subjects"],
+        boards: multiSelectState["ed-boards"],
+        classes: multiSelectState["ed-classes"],
+        mode: document.getElementById("ed-mode").value,
+        pincode: document.getElementById("ed-pincode").value.trim(),
+        experience: document.getElementById("ed-exp").value.trim()
+      });
+      alert("Profile updated.");
+    };
+  });
+
+  // ================= ADMIN PANEL =================
+  // Separate Auth instance so an admin login doesn't collide with a teacher session.
+  // IMPORTANT: Firestore reads must use a Firestore instance tied to THIS SAME app,
+  // otherwise Firestore can't see the admin's login and permission checks fail.
+  const adminApp = initializeApp(firebaseConfig, "adminApp");
+  const adminAuth = getAuth(adminApp);
+  const adminDb = getFirestore(adminApp);
+
+  function aMsg(text){ document.getElementById("admin-msg").innerHTML = `<div class="msg error">${text}</div>`; }
+  document.getElementById("admin-login-btn").onclick = async () => {
+    const email = document.getElementById("admin-email").value.trim();
+    const password = document.getElementById("admin-password").value;
+    try{ await signInWithEmailAndPassword(adminAuth, email, password); }
+    catch(err){ aMsg(friendlyAuthError(err)); }
+  };
+  document.getElementById("admin-logout-btn").onclick = () => signOut(adminAuth);
+
+  onAuthStateChanged(adminAuth, async (user) => {
+    if(!user){
+      document.getElementById("admin-login-card").classList.remove("hidden");
+      document.getElementById("admin-dash").classList.add("hidden");
+      return;
+    }
+    const adminDoc = await getDoc(doc(adminDb,"admins",user.uid));
+    if(!adminDoc.exists()){ aMsg("This account is not authorized as admin."); await signOut(adminAuth); return; }
+    document.getElementById("admin-login-card").classList.add("hidden");
+    document.getElementById("admin-dash").classList.remove("hidden");
+    loadAdminDashboard();
+  });
+
+  function adminRow(t, opts){
+    return `<div class="admin-row" data-id="${t.id}">
+      <div><div class="who">${t.name||"(no name)"} ${t.verified?"✅":""}</div>
+      <div class="sub">${(t.subjects||[]).join(", ")} · ${(t.boards||[]).join(", ")} · ${t.pincode||""} · ${t.whatsappClicks||0} clicks</div></div>
+      <div class="pill-row">${opts}</div></div>`;
+  }
+  async function loadAdminDashboard(){
+    const snap = await getDocs(collection(adminDb,"teachers"));
+    const all = snap.docs.map(d=>({id:d.id, ...d.data()}));
+    document.getElementById("a-stat-total").textContent = all.length;
+    const pending = all.filter(t=>t.status==="pending");
+    const approved = all.filter(t=>t.status==="approved");
+    document.getElementById("a-stat-pending").textContent = pending.length;
+    document.getElementById("pending-list").innerHTML = pending.length ? pending.map(t=>adminRow(t,
+      `<button class="pill approve" data-action="approve" data-id="${t.id}">Approve</button>
+       <button class="pill reject" data-action="reject" data-id="${t.id}">Reject</button>`)).join("")
+      : '<div class="empty">No pending registrations.</div>';
+    document.getElementById("approved-list").innerHTML = approved.length ? approved.map(t=>adminRow(t,
+      `<button class="pill verify" data-action="toggleVerify" data-id="${t.id}">${t.verified?"Unverify":"Verify"}</button>
+       <button class="pill reject" data-action="suspend" data-id="${t.id}">${t.active===false?"Unsuspend":"Suspend"}</button>`)).join("")
+      : '<div class="empty">No approved teachers yet.</div>';
+    document.querySelectorAll("[data-action]").forEach(btn=>{
+      btn.addEventListener("click", async () => {
+        const id = btn.dataset.id, action = btn.dataset.action, ref = doc(adminDb,"teachers",id);
+        if(action==="approve") await updateDoc(ref, { status:"approved" });
+        if(action==="reject") await updateDoc(ref, { status:"rejected" });
+        if(action==="toggleVerify"){ const s=await getDoc(ref); await updateDoc(ref,{verified:!s.data().verified}); }
+        if(action==="suspend"){ const s=await getDoc(ref); await updateDoc(ref,{active: s.data().active===false ? true:false}); }
+        loadAdminDashboard();
+      });
+    });
+  }
+</script>
+</body>
+</html>
