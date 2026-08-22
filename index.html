@@ -3,554 +3,976 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Special Home Tuitions</title>
+<title>Special Home Tuitions — Private 1-on-1 Tutors, India &amp; Worldwide</title>
+<meta name="description" content="Private, 1-on-1 tutoring — online or at home — across India and abroad. CBSE, ICSE, IGCSE, IB, JEE, NEET and more.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,560;9..144,650&family=Work+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#1B2430; --paper:#F5F1E7; --slate:#5B6B79; --line:#E4E0D2;
-    --blue:#2C5F6F; --blue-deep:#173842; --gold:#C9973F; --gold-light:#E7C685; --gold-deep:#9C7328;
-    --whatsapp:#25D366; --card:#FFFFFF; --radius:16px; --red:#B33636;
-  }
-  *{box-sizing:border-box;}
-  body{margin:0; font-family:'Inter', 'Segoe UI', Helvetica, Arial, sans-serif; background:
-    radial-gradient(circle at 15% 0%, #FAF7EE 0%, var(--paper) 45%);
-    color:var(--ink);
-  }
-  .display{font-family:'Playfair Display', Georgia, serif;}
-  header.top{
-    background:linear-gradient(135deg, var(--blue-deep) 0%, var(--blue) 60%, #235A67 100%);
-    color:#fff; padding:32px 20px 38px; text-align:center; position:relative; overflow:hidden;
-    box-shadow:0 6px 30px rgba(23,56,66,0.35);
-  }
-  header.top::before{
-    content:""; position:absolute; inset:0;
-    background:radial-gradient(circle at 78% -10%, rgba(231,198,133,0.35), transparent 55%);
-  }
-  header.top::after{
-    content:""; position:absolute; left:0; right:0; bottom:0; height:3px;
-    background:linear-gradient(90deg, transparent, var(--gold-light), var(--gold), var(--gold-light), transparent);
-  }
-  header.top h1{margin:0 0 6px; font-size:28px; letter-spacing:0.3px; position:relative; font-weight:700;
-    background:linear-gradient(90deg, #fff, var(--gold-light), #fff);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-  }
-  header.top p{margin:0 0 10px; opacity:0.88; font-size:13px; position:relative; letter-spacing:0.2px;}
-  .teacher-link{
-    position:relative; display:inline-block; font-size:12px; color:#fff;
-    background:rgba(255,255,255,0.12); border:1px solid rgba(231,198,133,0.5);
-    padding:7px 16px; border-radius:20px; text-decoration:none; font-weight:600;
-    transition:background .2s;
-  }
-  .teacher-link:hover{background:rgba(231,198,133,0.22);}
-  main{max-width:640px; margin:0 auto; padding:26px 16px 60px;}
-  .card{
-    background:var(--card); border-radius:var(--radius); padding:20px 22px;
-    box-shadow:0 6px 24px rgba(23,56,66,0.08); border:1px solid var(--line); margin-bottom:20px;
-    transition:box-shadow .25s, transform .25s;
-  }
-  .card:hover{box-shadow:0 10px 32px rgba(23,56,66,0.12);}
-  .field{display:flex; flex-direction:column; gap:5px; margin-bottom:12px;}
-  .field.full{grid-column:1/-1;}
-  label{font-size:11px; text-transform:uppercase; letter-spacing:0.6px; color:var(--slate); font-weight:600;}
-  input, select{padding:11px 12px; border-radius:9px; border:1px solid var(--line); background:#FBFAF5; font-size:14px; color:var(--ink); width:100%; transition:border-color .2s, box-shadow .2s;}
-  input:focus, select:focus{outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,151,63,0.15);}
-  .filter-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
-  .btn{
-    width:100%; padding:13px; border:none; border-radius:10px;
-    background:linear-gradient(135deg, var(--blue-deep), var(--blue));
-    color:#fff; font-size:15px; font-weight:700; cursor:pointer; margin-top:6px;
-    box-shadow:0 4px 14px rgba(23,56,66,0.25); transition:transform .15s, box-shadow .15s;
-  }
-  .btn:hover{transform:translateY(-1px); box-shadow:0 6px 20px rgba(23,56,66,0.32);}
-  .btn:active{transform:translateY(0);}
-  .btn.gold{background:linear-gradient(135deg, var(--gold-deep), var(--gold), var(--gold-light)); box-shadow:0 4px 14px rgba(201,151,63,0.35);}
-  .btn.ghost{background:transparent; color:var(--red); border:1px solid var(--red); font-weight:600; box-shadow:none;}
-  .tabs2{display:flex; gap:8px; margin-bottom:16px;}
-  .tabs2 button{flex:1; padding:10px; border:1px solid var(--line); background:#FAFAF7; border-radius:9px; font-weight:700; font-size:13px; cursor:pointer; color:var(--slate);}
-  .tabs2 button.active{background:var(--blue-deep); color:#fff; border-color:var(--blue-deep);}
-  .msg{font-size:13px; padding:10px 12px; border-radius:9px; margin-bottom:14px;}
-  .msg.error{background:#FBE0E0; color:var(--red);}
-  .msg.ok{background:#DCF3E6; color:#1F8A5C;}
-  .hidden{display:none !important;}
-  .results-count{font-size:13px; color:var(--slate); margin:4px 2px 14px;}
-  .teacher-card{background:var(--card); border-radius:var(--radius); border:1px solid var(--line); padding:16px; margin-bottom:14px; display:flex; gap:14px; box-shadow:0 3px 12px rgba(23,56,66,0.06); transition:box-shadow .2s, transform .2s;}
-  .teacher-card:hover{box-shadow:0 8px 24px rgba(23,56,66,0.12); transform:translateY(-1px);}
-  .avatar{width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg, var(--gold-deep), var(--gold), var(--gold-light)); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px; flex-shrink:0; font-family:'Playfair Display', serif; box-shadow:0 0 0 3px #fff, 0 0 0 4px rgba(201,151,63,0.3);}
-  .t-body{flex:1; min-width:0;}
-  .t-name{font-weight:700; font-size:15.5px;}
-  .badge{font-size:10px; background:linear-gradient(135deg, #E6F4EF, #D3EEE1); color:#1F8A5C; padding:3px 8px; border-radius:20px; font-weight:700; margin-left:6px; letter-spacing:0.3px;}
-  .t-meta{font-size:12.5px; color:var(--slate); margin:3px 0 8px;}
-  .tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;}
-  .tag{font-size:11px; background:#EEF3F1; color:var(--blue-deep); padding:3px 9px; border-radius:20px; font-weight:600;}
-  .wa-btn{display:inline-flex; align-items:center; gap:7px; background:linear-gradient(135deg, var(--whatsapp), #1FBE5A); color:#fff; padding:9px 16px; border-radius:9px; font-weight:700; font-size:13px; border:none; cursor:pointer; box-shadow:0 3px 10px rgba(37,211,102,0.3); transition:transform .15s;}
-  .wa-btn:hover{transform:translateY(-1px);}
+    --ink:#0e1424;
+    --ink-2:#161d33;
+    --paper:#f6f1e6;
+    --paper-2:#efe7d6;
+    --brass:#c99a4a;
+    --brass-light:#e2bd7c;
+    --teal:#1f5c52;
+    --teal-light:#2c7a6c;
+    --rose:#b0503f;
+    --charcoal:#241f18;
+    --cream:#fbf7ee;
+    --line-dark:rgba(246,241,230,0.14);
+    --line-light:rgba(36,31,24,0.12);
 
-  /* Multi-select chip picker (subjects / boards / classes) */
-  .multiselect{border:1px solid var(--line); border-radius:9px; background:#FBFAF5; padding:8px; margin-bottom:0;}
-  .chips{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px;}
-  .chips:empty{margin-bottom:0;}
-  .chip{
-    display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600;
-    background:linear-gradient(135deg, #FBF3E2, #F3E3BE); color:var(--gold-deep);
-    border:1px solid rgba(201,151,63,0.4); padding:5px 6px 5px 11px; border-radius:20px;
+    --display:'Fraunces', serif;
+    --body:'Work Sans', sans-serif;
+    --mono:'Space Mono', monospace;
   }
-  .chip-x{
-    border:none; background:rgba(201,151,63,0.25); color:var(--gold-deep); width:16px; height:16px;
-    border-radius:50%; font-size:11px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center;
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--body);
+    background:var(--paper);
+    color:var(--charcoal);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
-  .chip-x:hover{background:rgba(201,151,63,0.45);}
-  .multiselect select{border:none; background:transparent; padding:4px 2px; font-size:13px; color:var(--slate);}
-  .multiselect select:focus{box-shadow:none;}
-  .empty{text-align:center; padding:30px 20px; color:var(--slate); font-size:13px;}
-  .status-pill{display:inline-block; font-size:11px; font-weight:700; padding:4px 10px; border-radius:20px; margin-bottom:14px;}
-  .status-pending{background:#FDF0DA; color:#A9740F;}
-  .status-approved{background:#DCF3E6; color:#1F8A5C;}
-  .status-rejected{background:#FBE0E0; color:#B33636;}
-  .toggle-row{display:flex; justify-content:space-between; align-items:center; background:#FAFAF7; border:1px solid var(--line); border-radius:9px; padding:10px 12px; margin-bottom:14px;}
-  .stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;}
-  .stat{background:#FAFAF7; border:1px solid var(--line); border-radius:10px; padding:12px; text-align:center;}
-  .stat .num{font-size:20px; font-weight:800; color:var(--blue-deep); font-family:Georgia, serif;}
-  .stat .lbl{font-size:10.5px; color:var(--slate); text-transform:uppercase;}
-  .block-title{font-size:14px; font-weight:700; margin:22px 0 10px; color:var(--blue-deep);}
-  .admin-row{display:flex; justify-content:space-between; align-items:center; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:10px; gap:10px;}
-  .who{font-weight:700; font-size:14px;}
-  .sub{font-size:12px; color:var(--slate);}
-  .pill-row{display:flex; gap:6px; flex-shrink:0;}
-  .pill{border:none; padding:7px 12px; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer;}
-  .pill.approve{background:#DCF3E6; color:#1F8A5C;}
-  .pill.reject{background:#FBE0E0; color:#B33636;}
-  .pill.verify{background:#E6EEFB; color:#2C5F6F;}
-  .link-back{display:block; text-align:center; font-size:12.5px; color:var(--slate); margin-top:10px; text-decoration:none;}
-  .logout-wrap{text-align:right; margin-bottom:6px;}
-  .logout-wrap button{background:none; border:none; color:var(--slate); font-size:12.5px; text-decoration:underline; cursor:pointer;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  .container{width:100%;max-width:1180px;margin:0 auto;padding:0 28px;}
+  section{position:relative;}
+  h1,h2,h3,h4{font-family:var(--display);font-weight:560;letter-spacing:-0.01em;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--teal);
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:16px;
+  }
+  .eyebrow::before{content:'';width:22px;height:1px;background:var(--teal);display:inline-block;}
+  .on-dark .eyebrow{color:var(--brass-light);}
+  .on-dark .eyebrow::before{background:var(--brass-light);}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    font-family:var(--body);font-weight:600;font-size:15px;
+    padding:15px 30px;border-radius:3px;
+    border:1px solid transparent;cursor:pointer;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+    white-space:nowrap;
+  }
+  .btn:focus-visible{outline:2px solid var(--brass);outline-offset:3px;}
+  .btn-primary{background:var(--brass);color:var(--ink);}
+  .btn-primary:hover{background:var(--brass-light);transform:translateY(-2px);box-shadow:0 10px 24px rgba(201,154,74,0.35);}
+  .btn-ghost-dark{border-color:var(--line-dark);color:var(--cream);}
+  .btn-ghost-dark:hover{border-color:var(--brass-light);color:var(--brass-light);transform:translateY(-2px);}
+  .btn-ghost-light{border-color:var(--line-light);color:var(--charcoal);}
+  .btn-ghost-light:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px);}
+  .btn-teal{background:var(--teal);color:var(--cream);}
+  .btn-teal:hover{background:var(--teal-light);transform:translateY(-2px);box-shadow:0 10px 24px rgba(31,92,82,0.3);}
+  .btn-sm{padding:11px 20px;font-size:13px;}
+  .btn-block{width:100%;}
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(14,20,36,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-dark);
+    transition:background .3s ease;
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:1180px;margin:0 auto;}
+  .logo{display:flex;align-items:center;gap:10px;color:var(--cream);}
+  .logo-mark{
+    width:36px;height:36px;border-radius:50%;
+    background:radial-gradient(circle at 32% 30%, var(--brass-light), var(--brass) 60%, #93711f 100%);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--display);font-weight:650;color:var(--ink);font-size:16px;
+    flex-shrink:0;
+  }
+  .logo-text{font-family:var(--display);font-size:18px;line-height:1.1;}
+  .logo-text small{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:0.14em;color:var(--brass-light);text-transform:uppercase;margin-top:3px;}
+  .nav-links{display:flex;align-items:center;gap:34px;}
+  .nav-links a{
+    font-size:14px;color:rgba(246,241,230,0.78);position:relative;padding:4px 0;
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{color:var(--cream);}
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--brass-light);
+    transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{display:flex;align-items:center;gap:14px;}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;}
+  .burger span{width:22px;height:2px;background:var(--cream);display:block;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:
+      radial-gradient(ellipse 900px 520px at 78% -10%, rgba(201,154,74,0.20), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 8% 110%, rgba(31,92,82,0.28), transparent 60%),
+      linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:var(--cream);
+    padding:168px 0 0;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.15fr 0.85fr;gap:50px;align-items:center;
+    padding-bottom:86px;
+  }
+  .hero h1{
+    font-size:clamp(38px, 5vw, 62px);
+    line-height:1.06;
+    font-weight:560;
+    margin-bottom:26px;
+  }
+  .hero h1 em{
+    font-style:italic;font-weight:450;color:var(--brass-light);
+  }
+  .hero p.lede{
+    font-size:17.5px;color:rgba(246,241,230,0.74);max-width:520px;margin-bottom:38px;
+  }
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px;}
+  .hero-note{font-family:var(--mono);font-size:12px;color:rgba(246,241,230,0.5);letter-spacing:0.03em;}
+
+  .hero-visual{position:relative;}
+
+  /* ---------- course image carousel ---------- */
+  .course-carousel{
+    position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/3.1;
+    border:1px solid var(--line-dark);
+    box-shadow:0 30px 60px rgba(0,0,0,0.35);
+  }
+  .carousel-track{display:flex;height:100%;transition:transform .55s cubic-bezier(.65,.05,.36,1);}
+  .carousel-slide{
+    min-width:100%;height:100%;position:relative;cursor:pointer;
+    display:flex;flex-direction:column;justify-content:flex-end;padding:28px;
+    color:var(--cream);
+  }
+  .carousel-slide::after{
+    content:'';position:absolute;inset:0;z-index:1;
+    background:linear-gradient(to top, rgba(9,13,24,0.92), rgba(9,13,24,0.25) 55%, rgba(9,13,24,0.1) 100%);
+  }
+  .carousel-slide.bg-1{background:radial-gradient(circle at 75% 20%, rgba(226,189,124,0.35), transparent 55%), linear-gradient(150deg,#1f5c52,#0e1424 78%);}
+  .carousel-slide.bg-2{background:radial-gradient(circle at 20% 15%, rgba(201,154,74,0.32), transparent 55%), linear-gradient(150deg,#2c7a6c,#131b2e 78%);}
+  .carousel-slide.bg-3{background:radial-gradient(circle at 80% 80%, rgba(176,80,63,0.28), transparent 55%), linear-gradient(150deg,#0e1424,#1f5c52 120%);}
+  .carousel-slide.bg-4{background:radial-gradient(circle at 25% 75%, rgba(226,189,124,0.3), transparent 55%), linear-gradient(150deg,#161d33,#2c7a6c 130%);}
+  .slide-badge{
+    position:relative;z-index:2;align-self:flex-start;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;
+    background:rgba(201,154,74,0.18);color:var(--brass-light);border:1px solid rgba(201,154,74,0.5);
+    padding:5px 11px;border-radius:20px;margin-bottom:14px;
+  }
+  .slide-title{position:relative;z-index:2;font-family:var(--display);font-size:21px;font-weight:500;margin-bottom:8px;max-width:80%;}
+  .slide-hint{
+    position:relative;z-index:2;font-family:var(--mono);font-size:11px;color:rgba(246,241,230,0.75);
+    opacity:0;transform:translateY(6px);transition:opacity .25s ease, transform .25s ease;
+  }
+  .carousel-slide:hover .slide-hint, .carousel-slide:focus-visible .slide-hint{opacity:1;transform:translateY(0);}
+  .carousel-slide:focus-visible{outline:2px solid var(--brass-light);outline-offset:-3px;}
+  .carousel-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+    width:40px;height:40px;border-radius:50%;
+    background:rgba(9,13,24,0.55);border:1px solid var(--line-dark);color:var(--cream);
+    font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:background .2s ease, border-color .2s ease, color .2s ease;
+  }
+  .carousel-arrow:hover{background:var(--brass-light);color:var(--ink);border-color:var(--brass-light);}
+  .carousel-arrow.prev{left:14px;}
+  .carousel-arrow.next{right:14px;}
+  .carousel-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:8px;}
+  .dot{width:7px;height:7px;border-radius:50%;background:rgba(246,241,230,0.35);cursor:pointer;transition:background .2s ease, transform .2s ease;}
+  .dot.active{background:var(--brass-light);transform:scale(1.35);}
+
+  .desk-card{
+    background:linear-gradient(160deg, rgba(246,241,230,0.06), rgba(246,241,230,0.02));
+    border:1px solid var(--line-dark);
+    border-radius:6px;
+    padding:30px;
+    position:relative;
+  }
+  .desk-card .lamp{
+    position:absolute;top:-30px;right:36px;width:70px;height:70px;
+    background:radial-gradient(circle, rgba(226,189,124,0.55), rgba(226,189,124,0) 70%);
+    filter:blur(2px);
+  }
+  .session-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line-dark);}
+  .session-row:last-child{border-bottom:none;}
+  .session-who{display:flex;align-items:center;gap:12px;}
+  .avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(160deg,var(--teal-light),var(--teal));display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:var(--cream);}
+  .session-title{font-size:13.5px;color:var(--cream);}
+  .session-sub{font-size:11.5px;color:rgba(246,241,230,0.5);font-family:var(--mono);}
+  .live-dot{width:7px;height:7px;border-radius:50%;background:#5ecb9a;display:inline-block;margin-right:6px;box-shadow:0 0 0 3px rgba(94,203,154,0.2);}
+  .status-live{font-family:var(--mono);font-size:11px;color:#5ecb9a;display:flex;align-items:center;}
+
+  /* ---------- world clock strip (signature) ---------- */
+  .clockstrip{
+    background:var(--ink-2);
+    border-top:1px solid var(--line-dark);
+    border-bottom:1px solid var(--line-dark);
+    padding:26px 0;
+  }
+  .clockstrip-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  .clockstrip-label{color:var(--cream);max-width:220px;}
+  .clockstrip-label .eyebrow{margin-bottom:6px;}
+  .clockstrip-label p{font-size:13px;color:rgba(246,241,230,0.6);}
+  .cities{display:flex;gap:34px;flex-wrap:wrap;}
+  .city{text-align:left;}
+  .city-name{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(246,241,230,0.55);margin-bottom:6px;}
+  .city-time{font-family:var(--mono);font-size:21px;color:var(--brass-light);letter-spacing:0.02em;}
+  .city-tag{font-size:10.5px;color:rgba(246,241,230,0.4);margin-top:3px;}
+
+  /* ---------- stats bar ---------- */
+  .stats{background:var(--paper-2);padding:56px 0;border-bottom:1px solid var(--line-light);}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;}
+  .stat-num{font-family:var(--mono);font-size:clamp(26px,3vw,38px);color:var(--teal);font-weight:700;}
+  .stat-label{font-size:13px;color:rgba(36,31,24,0.6);margin-top:6px;}
+
+  /* ---------- section heads ---------- */
+  .section{padding:104px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:56px;flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(28px,3.4vw,42px);max-width:640px;}
+  .section-head p{color:rgba(36,31,24,0.62);max-width:420px;font-size:15px;}
+
+  /* ---------- offers / courses section ---------- */
+  .offers-section{
+    background:var(--ink);
+    color:var(--cream);
+  }
+  .offers-tabs{display:flex;gap:10px;margin-bottom:40px;flex-wrap:wrap;}
+  .tab-btn{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:0.05em;text-transform:uppercase;
+    padding:11px 20px;border-radius:30px;border:1px solid var(--line-dark);
+    background:transparent;color:rgba(246,241,230,0.65);cursor:pointer;
+    transition:all .25s ease;
+  }
+  .tab-btn.active,.tab-btn:hover{border-color:var(--brass-light);color:var(--brass-light);background:rgba(201,154,74,0.08);}
+
+  .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .offer-card, .course-card{
+    background:linear-gradient(165deg, rgba(246,241,230,0.05), rgba(246,241,230,0.015));
+    border:1px solid var(--line-dark);
+    border-radius:6px;
+    padding:30px 26px;
+    display:flex;flex-direction:column;gap:16px;
+    transition:transform .3s ease, border-color .3s ease, background .3s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .offer-card:hover, .course-card:hover{transform:translateY(-6px);border-color:rgba(201,154,74,0.4);background:linear-gradient(165deg, rgba(246,241,230,0.08), rgba(246,241,230,0.02));}
+  .course-card.highlight, .offer-card.highlight{border-color:var(--brass-light);box-shadow:0 0 0 3px rgba(201,154,74,0.28);transition:border-color .3s ease, box-shadow .3s ease;}
+  .badge{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;
+    padding:5px 11px;border-radius:20px;display:inline-flex;align-self:flex-start;
+  }
+  .badge-new{background:rgba(44,122,108,0.22);color:#7fd1bd;border:1px solid rgba(44,122,108,0.5);}
+  .badge-sale{background:rgba(176,80,63,0.2);color:#e39687;border:1px solid rgba(176,80,63,0.5);}
+  .badge-soon{background:rgba(201,154,74,0.16);color:var(--brass-light);border:1px solid rgba(201,154,74,0.45);}
+  .card-title{font-family:var(--display);font-size:21px;font-weight:500;}
+  .card-desc{font-size:13.8px;color:rgba(246,241,230,0.6);flex-grow:1;}
+  .price-row{display:flex;align-items:baseline;gap:10px;font-family:var(--mono);}
+  .price-old{color:rgba(246,241,230,0.35);text-decoration:line-through;font-size:14px;}
+  .price-new{color:var(--brass-light);font-size:22px;font-weight:700;}
+  .offer-meta{font-size:11.5px;color:rgba(246,241,230,0.45);font-family:var(--mono);display:flex;justify-content:space-between;border-top:1px dashed var(--line-dark);padding-top:14px;}
+  .card-cta{margin-top:4px;}
+
+  /* ---------- how it works ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;counter-reset:step;}
+  .step-card{position:relative;padding-top:8px;}
+  .step-num{font-family:var(--mono);font-size:13px;color:var(--brass);border:1px solid var(--brass);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;}
+  .step-card h3{font-size:20px;margin-bottom:10px;}
+  .step-card p{font-size:14.5px;color:rgba(36,31,24,0.65);}
+
+  /* ---------- programs ---------- */
+  .programs-tabgroup{display:flex;gap:14px;margin-bottom:42px;border-bottom:1px solid var(--line-light);}
+  .prog-tab{
+    font-family:var(--body);font-weight:600;font-size:14.5px;padding:14px 4px;
+    color:rgba(36,31,24,0.45);border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;background:none;border-top:none;border-left:none;border-right:none;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .prog-tab.active{color:var(--teal);border-bottom-color:var(--teal);}
+  .prog-panels{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .prog-panel{display:none;}
+  .prog-panel.active{display:contents;}
+  .prog-card{
+    background:var(--cream);border:1px solid var(--line-light);border-radius:6px;padding:26px;
+    transition:box-shadow .3s ease, transform .3s ease;
+  }
+  .prog-card:hover{box-shadow:0 16px 34px rgba(36,31,24,0.08);transform:translateY(-4px);}
+  .prog-card h4{font-size:18px;margin-bottom:8px;}
+  .prog-card p{font-size:13.8px;color:rgba(36,31,24,0.6);margin-bottom:14px;}
+  .prog-tags{display:flex;gap:8px;flex-wrap:wrap;}
+  .prog-tags span{font-family:var(--mono);font-size:10.5px;background:var(--paper-2);padding:4px 10px;border-radius:20px;color:var(--teal);}
+
+  /* ---------- why us ---------- */
+  .why{background:var(--paper-2);}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line-light);border:1px solid var(--line-light);}
+  .why-card{background:var(--paper-2);padding:34px 28px;}
+  .why-card .icon{width:42px;height:42px;border-radius:50%;background:var(--ink);color:var(--brass-light);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:18px;margin-bottom:20px;}
+  .why-card h4{font-size:16.5px;margin-bottom:8px;}
+  .why-card p{font-size:13.5px;color:rgba(36,31,24,0.6);}
+
+  /* ---------- tutors ---------- */
+  .tutor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .tutor-card{background:var(--cream);border:1px solid var(--line-light);border-radius:6px;overflow:hidden;transition:transform .3s ease;}
+  .tutor-card:hover{transform:translateY(-5px);}
+  .tutor-photo{height:170px;background:linear-gradient(155deg,var(--teal-light),var(--ink));display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:34px;color:var(--brass-light);}
+  .tutor-body{padding:20px;}
+  .tutor-body h4{font-size:16px;margin-bottom:3px;}
+  .tutor-role{font-family:var(--mono);font-size:11px;color:var(--teal);margin-bottom:10px;}
+  .tutor-body p{font-size:13px;color:rgba(36,31,24,0.6);}
+  .tutor-loc{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(36,31,24,0.45);margin-top:10px;font-family:var(--mono);}
+
+  /* ---------- testimonials ---------- */
+  .testi-section{background:var(--ink);color:var(--cream);}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .testi-card{background:rgba(246,241,230,0.04);border:1px solid var(--line-dark);border-radius:6px;padding:30px;}
+  .testi-quote{font-family:var(--display);font-size:17px;font-style:italic;line-height:1.5;margin-bottom:22px;color:var(--cream);}
+  .testi-who{display:flex;align-items:center;gap:12px;}
+  .testi-name{font-size:13.5px;font-weight:600;}
+  .testi-loc{font-family:var(--mono);font-size:11px;color:rgba(246,241,230,0.5);}
+
+  /* ---------- faq ---------- */
+  .faq-list{max-width:800px;}
+  .faq-item{border-bottom:1px solid var(--line-light);padding:22px 0;cursor:pointer;}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;font-family:var(--display);font-size:18px;font-weight:500;}
+  .faq-plus{font-family:var(--mono);font-size:20px;color:var(--teal);transition:transform .3s ease;}
+  .faq-item.open .faq-plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease, opacity .3s ease, margin-top .3s ease;opacity:0;font-size:14.5px;color:rgba(36,31,24,0.65);}
+  .faq-item.open .faq-a{max-height:200px;opacity:1;margin-top:14px;}
+
+  /* ---------- final cta ---------- */
+  .final-cta{
+    background:linear-gradient(155deg, var(--teal) 0%, var(--ink) 78%);
+    color:var(--cream);text-align:center;padding:110px 0;
+  }
+  .final-cta h2{font-size:clamp(30px,4vw,46px);max-width:720px;margin:0 auto 20px;}
+  .final-cta p{color:rgba(246,241,230,0.72);max-width:520px;margin:0 auto 38px;font-size:16px;}
+  .final-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink);color:rgba(246,241,230,0.6);padding:70px 0 30px;border-top:1px solid var(--line-dark);}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:50px;}
+  .footer-brand p{font-size:13.5px;margin-top:16px;max-width:280px;color:rgba(246,241,230,0.5);}
+  .footer-col h5{font-family:var(--mono);font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--brass-light);margin-bottom:18px;}
+  .footer-col a{display:block;font-size:13.5px;color:rgba(246,241,230,0.6);margin-bottom:11px;transition:color .2s ease;}
+  .footer-col a:hover{color:var(--cream);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line-dark);padding-top:26px;font-size:12px;color:rgba(246,241,230,0.35);flex-wrap:wrap;gap:10px;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;max-width:460px;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .card-grid{grid-template-columns:repeat(2,1fr);}
+    .steps{grid-template-columns:1fr;}
+    .prog-panels{grid-template-columns:repeat(2,1fr);}
+    .why-grid{grid-template-columns:repeat(2,1fr);}
+    .tutor-grid{grid-template-columns:repeat(2,1fr);}
+    .testi-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .clockstrip-inner{flex-direction:column;align-items:flex-start;}
+  }
+  @media (max-width:720px){
+    .nav-links{display:none;}
+    .burger{display:flex;}
+    .card-grid{grid-template-columns:1fr;}
+    .prog-panels{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .tutor-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .section{padding:70px 0;}
+    .cities{gap:22px;}
+    .city-time{font-size:17px;}
+    .nav-cta .btn-ghost-dark{display:none;}
+  }
 </style>
 </head>
 <body>
 
-<header class="top">
-  <h1 id="page-title">Special Home Tuitions</h1>
-  <p id="page-sub">Find verified teachers near you — connect on WhatsApp in one tap</p>
-  <a class="teacher-link hidden" href="#teacher" id="teacher-link">Are you a teacher? Register / Login →</a>
+<header>
+  <nav class="nav">
+    <a href="#top" class="logo">
+      <span class="logo-mark">SH</span>
+      <span class="logo-text">Special Home Tuitions<small>Private tutors · India &amp; Abroad</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#batches">Batches &amp; Offers</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#tutors">Tutors</a></li>
+      <li><a href="#testimonials">Stories</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="https://portal.specialhometuitions.com/login" target="_blank" rel="noopener" class="btn btn-ghost-dark btn-sm">Portal Login</a>
+      <a href="https://portal.specialhometuitions.com/trial" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Book Free Trial</a>
+    </div>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
 </header>
 
-<main>
+<main id="top">
 
-  <!-- ============ PARENT VIEW ============ -->
-  <section id="view-parent">
-    <div class="card">
-      <div class="filter-grid">
-        <div class="field">
-          <label>Subject</label>
-          <select id="f-subject"><option value="">Any</option><option>Mathematics</option><option>Science</option><option>English</option><option>Physics</option><option>Chemistry</option><option>Accounts</option></select>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal in">
+        <div class="eyebrow">1‑on‑1 · Online &amp; At Home · India + 14 Countries</div>
+        <h1>A private classroom, <em>built around</em> one student at a time.</h1>
+        <p class="lede">Special Home Tuitions pairs your child with a dedicated personal teacher — in your living room in Mumbai, or over video in Melbourne. No batches of thirty. No generic pace. Just one tutor, one student, one plan.</p>
+        <div class="hero-ctas">
+          <a href="https://portal.specialhometuitions.com/trial" target="_blank" rel="noopener" class="btn btn-primary">Book a Free Trial Class</a>
+          <a href="#batches" class="btn btn-ghost-dark">See Current Offers ↓</a>
         </div>
-        <div class="field">
-          <label>Board</label>
-          <select id="f-board"><option value="">Any</option><option>CBSE</option><option>ICSE</option><option>State Board</option><option>IB</option></select>
-        </div>
-        <div class="field">
-          <label>Class</label>
-          <select id="f-class"><option value="">Any</option><option>1-5</option><option>6-8</option><option>9-10</option><option>11-12</option></select>
-        </div>
-        <div class="field">
-          <label>Mode</label>
-          <select id="f-mode"><option value="">Any</option><option>Online</option><option>Offline</option></select>
-        </div>
-        <div class="field full">
-          <label>Pincode</label>
-          <input id="f-pincode" placeholder="e.g. 400075" inputmode="numeric" maxlength="6">
-        </div>
+        <div class="hero-note">No card required for the trial class · Reply within 2 working hours</div>
       </div>
-      <button class="btn" id="search-btn">Search Teachers</button>
-    </div>
-    <div class="results-count" id="results-count"></div>
-    <div id="results"><div class="empty">Loading teachers…</div></div>
-  </section>
 
-  <!-- ============ TEACHER VIEW ============ -->
-  <section id="view-teacher" class="hidden">
-    <div class="card" id="teacher-auth-card">
-      <div class="tabs2">
-        <button class="active" id="tab-login">Login</button>
-        <button id="tab-signup">Register</button>
-      </div>
-      <div id="teacher-msg"></div>
-      <div id="login-form">
-        <div class="field"><label>Username</label><input id="login-username"></div>
-        <div class="field"><label>Password</label><input id="login-password" type="password"></div>
-        <button class="btn" id="login-btn">Log In</button>
-        <a href="#" class="link-back" id="forgot-link">Forgot password? (OTP recovery coming soon)</a>
-      </div>
-      <div id="signup-form" class="hidden">
-        <div class="field"><label>Full name</label><input id="su-name"></div>
-        <div class="field"><label>Username</label><input id="su-username"></div>
-        <div class="field"><label>Password</label><input id="su-password" type="password" placeholder="Min 6 characters"></div>
-        <div class="field"><label>Phone (future OTP recovery)</label><input id="su-phone" inputmode="numeric" maxlength="10"></div>
-        <div class="field"><label>WhatsApp number</label><input id="su-whatsapp" placeholder="919876543210"></div>
-        <div class="field"><label>Subjects</label>
-          <div class="multiselect" id="su-subjects"><div class="chips" id="su-subjects-chips"></div><select id="su-subjects-select"></select></div>
+      <div class="hero-visual reveal in">
+        <div class="course-carousel" id="courseCarousel">
+          <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-slide bg-1" data-target="course-cbse10" role="button" tabindex="0" aria-label="View CBSE Class 10 Board Mastery course details">
+              <span class="slide-badge">New Batch</span>
+              <div class="slide-title">CBSE Class 10 Board Mastery</div>
+              <div class="slide-hint">View course details ↓</div>
+            </div>
+            <div class="carousel-slide bg-2" data-target="course-igcse" role="button" tabindex="0" aria-label="View IGCSE Math and Sciences course details">
+              <span class="slide-badge">New Batch</span>
+              <div class="slide-title">IGCSE Math &amp; Sciences</div>
+              <div class="slide-hint">View course details ↓</div>
+            </div>
+            <div class="carousel-slide bg-3" data-target="course-jee-neet" role="button" tabindex="0" aria-label="View JEE NEET Foundation course details">
+              <span class="slide-badge">New Batch</span>
+              <div class="slide-title">JEE / NEET Foundation — Class 11</div>
+              <div class="slide-hint">View course details ↓</div>
+            </div>
+            <div class="carousel-slide bg-4" data-target="course-ib" role="button" tabindex="0" aria-label="View IB MYP and DP Personal Tutoring course details">
+              <span class="slide-badge">New Batch</span>
+              <div class="slide-title">IB MYP &amp; DP Personal Tutoring</div>
+              <div class="slide-hint">View course details ↓</div>
+            </div>
+          </div>
+          <button class="carousel-arrow prev" id="carouselPrev" aria-label="Previous course">‹</button>
+          <button class="carousel-arrow next" id="carouselNext" aria-label="Next course">›</button>
+          <div class="carousel-dots" id="carouselDots">
+            <span class="dot active" data-i="0"></span>
+            <span class="dot" data-i="1"></span>
+            <span class="dot" data-i="2"></span>
+            <span class="dot" data-i="3"></span>
+          </div>
         </div>
-        <div class="field"><label>Boards</label>
-          <div class="multiselect" id="su-boards"><div class="chips" id="su-boards-chips"></div><select id="su-boards-select"></select></div>
-        </div>
-        <div class="field"><label>Classes</label>
-          <div class="multiselect" id="su-classes"><div class="chips" id="su-classes-chips"></div><select id="su-classes-select"></select></div>
-        </div>
-        <div class="field"><label>Mode</label><select id="su-mode"><option>Online</option><option>Offline</option><option>Both</option></select></div>
-        <div class="field"><label>Pincode</label><input id="su-pincode" inputmode="numeric" maxlength="6"></div>
-        <div class="field"><label>Experience</label><input id="su-exp" placeholder="e.g. 5 yrs"></div>
-        <button class="btn gold" id="signup-btn">Submit for Approval</button>
       </div>
-      <a href="#" class="link-back">← Back to teacher search</a>
     </div>
 
-    <div class="card hidden" id="teacher-dash-card">
-      <div class="logout-wrap"><button id="teacher-logout-btn">Log out</button></div>
-      <div id="status-pill-wrap"></div>
-      <div class="stat-grid">
-        <div class="stat"><div class="num" id="stat-clicks">0</div><div class="lbl">WhatsApp Clicks</div></div>
-        <div class="stat"><div class="num" id="stat-active">—</div><div class="lbl">Listing Status</div></div>
+    <!-- SIGNATURE: world clock strip -->
+    <div class="clockstrip">
+      <div class="container clockstrip-inner">
+        <div class="clockstrip-label">
+          <div class="eyebrow">Always in session</div>
+          <p>Our tutors teach across time zones — book a slot that matches your evening, wherever home is.</p>
+        </div>
+        <div class="cities" id="clockCities">
+          <div class="city"><div class="city-name">Mumbai</div><div class="city-time" data-tz="Asia/Kolkata">--:--</div><div class="city-tag">HQ</div></div>
+          <div class="city"><div class="city-name">Dubai</div><div class="city-time" data-tz="Asia/Dubai">--:--</div><div class="city-tag">120+ students</div></div>
+          <div class="city"><div class="city-name">London</div><div class="city-time" data-tz="Europe/London">--:--</div><div class="city-tag">80+ students</div></div>
+          <div class="city"><div class="city-name">New York</div><div class="city-time" data-tz="America/New_York">--:--</div><div class="city-tag">60+ students</div></div>
+          <div class="city"><div class="city-name">Singapore</div><div class="city-time" data-tz="Asia/Singapore">--:--</div><div class="city-tag">45+ students</div></div>
+        </div>
       </div>
-      <div class="toggle-row"><span>Listing active (visible to parents)</span><input type="checkbox" id="active-toggle"></div>
-      <div class="field"><label>Full name</label><input id="ed-name"></div>
-      <div class="field"><label>WhatsApp number</label><input id="ed-whatsapp"></div>
-      <div class="field"><label>Subjects</label>
-        <div class="multiselect" id="ed-subjects"><div class="chips" id="ed-subjects-chips"></div><select id="ed-subjects-select"></select></div>
-      </div>
-      <div class="field"><label>Boards</label>
-        <div class="multiselect" id="ed-boards"><div class="chips" id="ed-boards-chips"></div><select id="ed-boards-select"></select></div>
-      </div>
-      <div class="field"><label>Classes</label>
-        <div class="multiselect" id="ed-classes"><div class="chips" id="ed-classes-chips"></div><select id="ed-classes-select"></select></div>
-      </div>
-      <div class="field"><label>Mode</label><select id="ed-mode"><option>Online</option><option>Offline</option><option>Both</option></select></div>
-      <div class="field"><label>Pincode</label><input id="ed-pincode"></div>
-      <div class="field"><label>Experience</label><input id="ed-exp"></div>
-      <button class="btn" id="save-btn">Save Changes</button>
     </div>
   </section>
 
-  <!-- ============ ADMIN VIEW ============ -->
-  <section id="view-admin" class="hidden">
-    <div class="card" id="admin-login-card">
-      <div id="admin-msg"></div>
-      <div class="field"><label>Admin Email</label><input id="admin-email" type="email"></div>
-      <div class="field"><label>Password</label><input id="admin-password" type="password"></div>
-      <button class="btn" id="admin-login-btn">Log In</button>
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container stats-grid">
+      <div class="reveal"><div class="stat-num">1,400+</div><div class="stat-label">Students taught 1‑on‑1</div></div>
+      <div class="reveal"><div class="stat-num">15</div><div class="stat-label">Countries, incl. India</div></div>
+      <div class="reveal"><div class="stat-num">220+</div><div class="stat-label">Verified private tutors</div></div>
+      <div class="reveal"><div class="stat-num">4.9/5</div><div class="stat-label">Average parent rating</div></div>
     </div>
-    <div class="hidden" id="admin-dash">
-      <div class="logout-wrap"><button id="admin-logout-btn">Log out</button></div>
-      <div class="stat-grid">
-        <div class="stat"><div class="num" id="a-stat-total">—</div><div class="lbl">Total Teachers</div></div>
-        <div class="stat"><div class="num" id="a-stat-pending">—</div><div class="lbl">Pending</div></div>
+  </section>
+
+  <!-- BATCHES & OFFERS -->
+  <section class="section offers-section" id="batches">
+    <div class="container">
+      <div class="section-head on-dark">
+        <div>
+          <div class="eyebrow">Fresh this term</div>
+          <h2>New batches, and offers worth timing your enrolment around.</h2>
+        </div>
+        <p>Seats in 1‑on‑1 batches are limited by design — each tutor takes on a handful of students at a time. Here's what's open right now.</p>
       </div>
-      <div class="block-title">Pending Approval</div>
-      <div id="pending-list"><div class="empty">Loading…</div></div>
-      <div class="block-title">Approved Teachers</div>
-      <div id="approved-list"><div class="empty">Loading…</div></div>
+
+      <div class="offers-tabs">
+        <button class="tab-btn active" data-tab="new">Newly Launched Batches</button>
+        <button class="tab-btn" data-tab="sale">Live Offers</button>
+        <button class="tab-btn" data-tab="soon">Coming Soon</button>
+      </div>
+
+      <!-- NEW BATCHES -->
+      <div class="tab-panel card-grid" data-panel="new">
+        <div class="course-card reveal" id="course-cbse10">
+          <span class="badge badge-new">New Batch</span>
+          <div class="card-title">CBSE Class 10 Board Mastery</div>
+          <p class="card-desc">Full-syllabus 1‑on‑1 coaching with weekly mock board papers and a personal weak-topic tracker. Batch begins the first week of September.</p>
+          <div class="offer-meta"><span>Starts 1 Sept</span><span>Online / At Home</span></div>
+          <a href="https://portal.specialhometuitions.com/enroll/cbse-10-mastery" target="_blank" rel="noopener" class="btn btn-teal btn-sm btn-block card-cta">Reserve a Seat</a>
+        </div>
+
+        <div class="course-card reveal" id="course-igcse">
+          <span class="badge badge-new">New Batch</span>
+          <div class="card-title">IGCSE Math &amp; Sciences (Core + Extended)</div>
+          <p class="card-desc">Built for students on the Cambridge curriculum abroad, matched with tutors who've taught IGCSE cohorts in the UAE, UK and Singapore.</p>
+          <div class="offer-meta"><span>Starts 8 Sept</span><span>Online, Global</span></div>
+          <a href="https://portal.specialhometuitions.com/enroll/igcse-core" target="_blank" rel="noopener" class="btn btn-teal btn-sm btn-block card-cta">Reserve a Seat</a>
+        </div>
+
+        <div class="course-card reveal" id="course-jee-neet">
+          <span class="badge badge-new">New Batch</span>
+          <div class="card-title">JEE / NEET Foundation — Class 11</div>
+          <p class="card-desc">A two-year 1‑on‑1 track for students starting their competitive-exam journey, with a diagnostic test in week one to set the pace.</p>
+          <div class="offer-meta"><span>Starts 3 Sept</span><span>Online / At Home</span></div>
+          <a href="https://portal.specialhometuitions.com/enroll/jee-neet-foundation" target="_blank" rel="noopener" class="btn btn-teal btn-sm btn-block card-cta">Reserve a Seat</a>
+        </div>
+
+        <div class="course-card reveal">
+          <span class="badge badge-new">New Batch</span>
+          <div class="card-title">Spoken English &amp; IELTS for Study-Abroad</div>
+          <p class="card-desc">For students preparing to move abroad for higher studies — speaking fluency, band-7+ writing structure, and mock interviews.</p>
+          <div class="offer-meta"><span>Rolling admission</span><span>Online, Global</span></div>
+          <a href="https://portal.specialhometuitions.com/enroll/ielts-studyabroad" target="_blank" rel="noopener" class="btn btn-teal btn-sm btn-block card-cta">Reserve a Seat</a>
+        </div>
+
+        <div class="course-card reveal" id="course-ib">
+          <span class="badge badge-new">New Batch</span>
+          <div class="card-title">IB MYP &amp; DP Personal Tutoring</div>
+          <p class="card-desc">Subject-wise 1‑on‑1 support for IB students, including Internal Assessment and Extended Essay guidance from subject specialists.</p>
+          <div class="offer-meta"><span>Starts 5 Sept</span><span>Online, Global</span></div>
+          <a href="https://portal.specialhometuitions.com/enroll/ib-tutoring" target="_blank" rel="noopener" class="btn btn-teal btn-sm btn-block card-cta">Reserve a Seat</a>
+        </div>
+
+        <div class="course-card reveal">
+          <span class="badge badge-new">New Batch</span>
+          <div class="card-title">Class 6–8 Foundation Builder</div>
+          <p class="card-desc">A concept-first program across Maths and Science, designed to build the habits that make board years easier later.</p>
+          <div class="offer-meta"><span>Starts 1 Sept</span><span>Online / At Home</span></div>
+          <a href="https://portal.specialhometuitions.com/enroll/foundation-builder" target="_blank" rel="noopener" class="btn btn-teal btn-sm btn-block card-cta">Reserve a Seat</a>
+        </div>
+      </div>
+
+      <!-- LIVE OFFERS -->
+      <div class="tab-panel card-grid" data-panel="sale" style="display:none;">
+        <div class="offer-card reveal">
+          <span class="badge badge-sale">Independence Sale</span>
+          <div class="card-title">15% off all annual plans</div>
+          <p class="card-desc">Our Independence Day sale has been extended by popular request. Applies to any annual 1‑on‑1 plan, any subject, any country.</p>
+          <div class="price-row"><span class="price-old">₹96,000/yr</span><span class="price-new">₹81,600/yr</span></div>
+          <div class="offer-meta"><span>Code: INDEP15</span><span>Ends 31 Aug</span></div>
+          <a href="https://portal.specialhometuitions.com/offers/independence-sale" target="_blank" rel="noopener" class="btn btn-primary btn-sm btn-block card-cta">Claim This Offer</a>
+        </div>
+
+        <div class="offer-card reveal">
+          <span class="badge badge-sale">Back-to-School</span>
+          <div class="card-title">Sibling &amp; Combo Discount</div>
+          <p class="card-desc">Enrol a second sibling or a second subject in the same term and take 20% off the additional enrolment.</p>
+          <div class="price-row"><span class="price-new">20% off 2nd enrolment</span></div>
+          <div class="offer-meta"><span>Auto-applied at checkout</span><span>Ends 15 Sept</span></div>
+          <a href="https://portal.specialhometuitions.com/offers/combo-discount" target="_blank" rel="noopener" class="btn btn-primary btn-sm btn-block card-cta">Claim This Offer</a>
+        </div>
+
+        <div class="offer-card reveal">
+          <span class="badge badge-sale">Refer &amp; Earn</span>
+          <div class="card-title">Refer a Friend, Both Get ₹3,000</div>
+          <p class="card-desc">Know a family who'd like a personal tutor? You both receive a ₹3,000 credit once their first month is complete.</p>
+          <div class="price-row"><span class="price-new">₹3,000 credit, both sides</span></div>
+          <div class="offer-meta"><span>No expiry</span><span>Unlimited referrals</span></div>
+          <a href="https://portal.specialhometuitions.com/offers/refer-a-friend" target="_blank" rel="noopener" class="btn btn-primary btn-sm btn-block card-cta">Get My Referral Link</a>
+        </div>
+      </div>
+
+      <!-- COMING SOON -->
+      <div class="tab-panel card-grid" data-panel="soon" style="display:none;">
+        <div class="offer-card reveal">
+          <span class="badge badge-soon">Waitlist Open</span>
+          <div class="card-title">Diwali Sale — Details Dropping Soon</div>
+          <p class="card-desc">Our festive-season offer on new enrolments is being finalised. Join the waitlist and you'll be first to know, before it's public.</p>
+          <div class="offer-meta"><span>Expected mid-October</span><span>Notify me</span></div>
+          <a href="https://portal.specialhometuitions.com/offers/diwali-waitlist" target="_blank" rel="noopener" class="btn btn-ghost-dark btn-sm btn-block card-cta">Join the Waitlist</a>
+        </div>
+        <div class="offer-card reveal">
+          <span class="badge badge-soon">In the works</span>
+          <div class="card-title">A-Level &amp; SAT Prep Batches</div>
+          <p class="card-desc">New 1‑on‑1 tracks for A-Level subjects and SAT preparation, for students applying abroad — launching next term.</p>
+          <div class="offer-meta"><span>Expected September</span><span>Notify me</span></div>
+          <a href="https://portal.specialhometuitions.com/offers/alevel-sat-waitlist" target="_blank" rel="noopener" class="btn btn-ghost-dark btn-sm btn-block card-cta">Join the Waitlist</a>
+        </div>
+        <div class="offer-card reveal">
+          <span class="badge badge-soon">In the works</span>
+          <div class="card-title">Winter Intensive Camps</div>
+          <p class="card-desc">Short, focused 1‑on‑1 intensives during the December break for students who want to close gaps before the new term.</p>
+          <div class="offer-meta"><span>Expected December</span><span>Notify me</span></div>
+          <a href="https://portal.specialhometuitions.com/offers/winter-camp-waitlist" target="_blank" rel="noopener" class="btn btn-ghost-dark btn-sm btn-block card-cta">Join the Waitlist</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
+    <div class="container">
+      <div class="section-head">
+        <div><div class="eyebrow">The process</div><h2>From enquiry to first class, in three steps.</h2></div>
+        <p>No lengthy onboarding. Most families are matched with a tutor within 48 hours.</p>
+      </div>
+      <div class="steps">
+        <div class="step-card reveal">
+          <div class="step-num">1</div>
+          <h3>Tell us the goal</h3>
+          <p>Board exam, a foreign curriculum, a competitive exam, or simply confidence in a subject — we start with what your child actually needs.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">2</div>
+          <h3>We match a tutor</h3>
+          <p>From 220+ verified tutors, we shortlist 2–3 who fit the subject, board and personality, and you sit in on a free trial class.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">3</div>
+          <h3>Begin, on your schedule</h3>
+          <p>Online from anywhere, or at home if you're in India — sessions are booked through your personal portal, at times that suit your day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="section" id="programs" style="background:var(--paper-2);">
+    <div class="container">
+      <div class="section-head">
+        <div><div class="eyebrow">Curricula we cover</div><h2>Indian boards, and the curricula families abroad ask for most.</h2></div>
+        <p>Every tutor is matched to the exact board and grade — not a generic subject teacher.</p>
+      </div>
+      <div class="programs-tabgroup">
+        <button class="prog-tab active" data-prog="india">Indian Boards</button>
+        <button class="prog-tab" data-prog="global">Foreign Curricula</button>
+        <button class="prog-tab" data-prog="exams">Competitive Exams</button>
+      </div>
+      <div class="prog-panels">
+        <div class="prog-panel active" data-panel="india">
+          <div class="prog-card"><h4>CBSE, All Grades</h4><p>Class 1 through 12, every core subject, mapped to the NCERT syllabus and latest board pattern.</p><div class="prog-tags"><span>Maths</span><span>Science</span><span>Boards</span></div></div>
+          <div class="prog-card"><h4>ICSE / ISC</h4><p>Subject specialists familiar with ICSE's depth and the board's writing-heavy exam style.</p><div class="prog-tags"><span>English</span><span>Science</span><span>Humanities</span></div></div>
+          <div class="prog-card"><h4>State Boards</h4><p>Maharashtra, Karnataka, Tamil Nadu and other state board tutors, in the medium of instruction you need.</p><div class="prog-tags"><span>Regional</span><span>Bilingual</span></div></div>
+        </div>
+        <div class="prog-panel" data-panel="global" style="display:none;">
+          <div class="prog-card"><h4>IGCSE (Cambridge)</h4><p>Core and Extended tiers, taught by tutors experienced with Cambridge assessment style.</p><div class="prog-tags"><span>Core</span><span>Extended</span></div></div>
+          <div class="prog-card"><h4>IB — MYP &amp; DP</h4><p>Subject tutoring plus guidance on Internal Assessments, the Extended Essay, and Theory of Knowledge.</p><div class="prog-tags"><span>MYP</span><span>DP</span><span>IA/EE</span></div></div>
+          <div class="prog-card"><h4>A-Levels &amp; SAT</h4><p>Subject-deep tutoring for students applying to universities abroad. New batches launching next term.</p><div class="prog-tags"><span>A-Level</span><span>SAT</span></div></div>
+        </div>
+        <div class="prog-panel" data-panel="exams" style="display:none;">
+          <div class="prog-card"><h4>JEE Main &amp; Advanced</h4><p>Physics, Chemistry and Maths, from foundation years through final revision, one-on-one.</p><div class="prog-tags"><span>PCM</span><span>Test Series</span></div></div>
+          <div class="prog-card"><h4>NEET</h4><p>Biology-forward coaching paired with the Physics and Chemistry rigor NEET demands.</p><div class="prog-tags"><span>PCB</span><span>Mock NEET</span></div></div>
+          <div class="prog-card"><h4>Olympiads &amp; NTSE</h4><p>For students who want to go beyond the syllabus in Maths, Science or Informatics.</p><div class="prog-tags"><span>Maths</span><span>Science</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why">
+    <div class="container">
+      <div class="section-head" style="padding-top:104px;">
+        <div><div class="eyebrow">Why families stay</div><h2>The details that make 1‑on‑1 actually mean 1‑on‑1.</h2></div>
+      </div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal"><div class="icon">✓</div><h4>Verified tutors only</h4><p>Every tutor is background-checked, subject-tested, and demo-reviewed before they teach a single class.</p></div>
+      <div class="why-card reveal"><div class="icon">↻</div><h4>Free tutor rematch</h4><p>If the fit isn't right in the first two weeks, we rematch you with a new tutor at no extra cost.</p></div>
+      <div class="why-card reveal"><div class="icon">◷</div><h4>Any time zone</h4><p>Because we teach across 15 countries, there's almost always a tutor awake and available at your evening.</p></div>
+      <div class="why-card reveal"><div class="icon">⌂</div><h4>Online or at home</h4><p>In India, choose an in-person tutor at your doorstep. Abroad, every session is a private video classroom.</p></div>
+    </div>
+    <div style="height:104px;"></div>
+  </section>
+
+  <!-- TUTORS -->
+  <section class="section" id="tutors">
+    <div class="container">
+      <div class="section-head">
+        <div><div class="eyebrow">Meet a few of them</div><h2>Tutors who've taught this exact board, this exact exam.</h2></div>
+        <p>Every profile below is a real tutor category on our panel — your child is matched to one like this.</p>
+      </div>
+      <div class="tutor-grid">
+        <div class="tutor-card reveal">
+          <div class="tutor-photo">SK</div>
+          <div class="tutor-body">
+            <h4>Sanjana K.</h4>
+            <div class="tutor-role">CBSE Maths &amp; Science, 9 yrs</div>
+            <p>Ex-Kendriya Vidyalaya faculty, specialises in Class 9–10 board prep.</p>
+            <div class="tutor-loc">📍 Based in Pune · Teaches India + UAE</div>
+          </div>
+        </div>
+        <div class="tutor-card reveal">
+          <div class="tutor-photo">RH</div>
+          <div class="tutor-body">
+            <h4>Rohan H.</h4>
+            <div class="tutor-role">IGCSE &amp; IB Physics, 11 yrs</div>
+            <p>Taught at international schools in Singapore and Dubai for 7 years.</p>
+            <div class="tutor-loc">📍 Based in Singapore · Teaches Global</div>
+          </div>
+        </div>
+        <div class="tutor-card reveal">
+          <div class="tutor-photo">PN</div>
+          <div class="tutor-body">
+            <h4>Priya N.</h4>
+            <div class="tutor-role">JEE/NEET Chemistry, 8 yrs</div>
+            <p>IIT alumna, has coached over 400 students into engineering colleges.</p>
+            <div class="tutor-loc">📍 Based in Delhi · Teaches India + UK</div>
+          </div>
+        </div>
+        <div class="tutor-card reveal">
+          <div class="tutor-photo">EW</div>
+          <div class="tutor-body">
+            <h4>Emma W.</h4>
+            <div class="tutor-role">IELTS &amp; Spoken English, 6 yrs</div>
+            <p>Cambridge CELTA certified, focused on study-abroad speaking confidence.</p>
+            <div class="tutor-loc">📍 Based in London · Teaches Global</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testi-section" id="testimonials">
+    <div class="container">
+      <div class="section-head on-dark">
+        <div><div class="eyebrow">In their words</div><h2>Parents in Mumbai, Dubai and Toronto, on what changed.</h2></div>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card reveal">
+          <p class="testi-quote">"Within three weeks, our son stopped dreading Maths. Having one tutor who knew exactly where he struggled made all the difference."</p>
+          <div class="testi-who"><div class="avatar">AN</div><div><div class="testi-name">Anita N.</div><div class="testi-loc">Parent, Mumbai · CBSE Class 10</div></div></div>
+        </div>
+        <div class="testi-card reveal">
+          <p class="testi-quote">"We're in Dubai and needed someone who actually understood the IGCSE syllabus, not just the subject. Special Home Tuitions matched us in two days."</p>
+          <div class="testi-who"><div class="avatar">FM</div><div><div class="testi-name">Farah M.</div><div class="testi-loc">Parent, Dubai · IGCSE Year 10</div></div></div>
+        </div>
+        <div class="testi-card reveal">
+          <p class="testi-quote">"The at-home sessions in Pune fit around her sports schedule in a way no coaching centre ever could. That flexibility is the whole point."</p>
+          <div class="testi-who"><div class="avatar">RD</div><div><div class="testi-name">Rakesh D.</div><div class="testi-loc">Parent, Pune · Class 8 Foundation</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <div><div class="eyebrow">Before you ask</div><h2>Common questions from parents.</h2></div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q"><span>Is the first class really free?</span><span class="faq-plus">+</span></div>
+          <div class="faq-a">Yes — one full trial class, with no payment details required, so you can judge the fit before committing to anything.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Do you offer in-home tutors outside India?</span><span class="faq-plus">+</span></div>
+          <div class="faq-a">In-home tutoring is currently available across major Indian cities. Outside India, all 1‑on‑1 classes run over live video through your portal.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Can I switch tutors if it's not working?</span><span class="faq-plus">+</span></div>
+          <div class="faq-a">Absolutely — a free rematch is available within the first two weeks of any plan, no questions asked.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Where do I manage my classes and payments?</span><span class="faq-plus">+</span></div>
+          <div class="faq-a">Everything — scheduling, recordings, invoices and progress reports — lives in your student portal, linked throughout this site.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>How do the sale offers get applied?</span><span class="faq-plus">+</span></div>
+          <div class="faq-a">Current offers are pre-linked from the Batches &amp; Offers section above — the discount code or credit is applied automatically at checkout in the portal.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <h2 class="reveal">Your child's tutor is waiting on the other side of one free class.</h2>
+      <p class="reveal">Tell us the subject and the goal — we'll match a verified tutor and have you in a trial class within 48 hours.</p>
+      <div class="final-ctas reveal">
+        <a href="https://portal.specialhometuitions.com/trial" target="_blank" rel="noopener" class="btn btn-primary">Book a Free Trial Class</a>
+        <a href="https://portal.specialhometuitions.com/login" target="_blank" rel="noopener" class="btn btn-ghost-dark">Go to Student Portal</a>
+      </div>
     </div>
   </section>
 
 </main>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import {
-    getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
-    onAuthStateChanged, signOut
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-  import {
-    getFirestore, collection, doc, setDoc, getDoc, getDocs, updateDoc,
-    query, where, increment, serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-mark">SH</span>
+          <span class="logo-text">Special Home Tuitions</span>
+        </div>
+        <p>Private 1‑on‑1 tutoring, online and at home, for students across India and abroad.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <a href="#batches">Batches &amp; Offers</a>
+        <a href="#programs">Programs</a>
+        <a href="#tutors">Tutors</a>
+        <a href="#testimonials">Parent Stories</a>
+      </div>
+      <div class="footer-col">
+        <h5>Portal</h5>
+        <a href="https://portal.specialhometuitions.com/login" target="_blank" rel="noopener">Student Login</a>
+        <a href="https://portal.specialhometuitions.com/trial" target="_blank" rel="noopener">Book Free Trial</a>
+        <a href="https://portal.specialhometuitions.com/tutor-apply" target="_blank" rel="noopener">Apply as a Tutor</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="mailto:hello@specialhometuitions.com">hello@specialhometuitions.com</a>
+        <a href="tel:+911234567890">+91 12345 67890</a>
+        <a href="#top">Mumbai, India · Global</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Special Home Tuitions. All rights reserved.</span>
+      <span>Portal links are placeholders — connect your real student portal URL.</span>
+    </div>
+  </div>
+</footer>
 
-  // ── Fill this in from your Firebase project (Project Settings → General → Your apps) ──
-  const firebaseConfig = {
-    apiKey: "AIzaSyCKLVXyqNlOQJ675tKB7vaQHmJXlH7vqwU",
-    authDomain: "sht-app-e6cf8.firebaseapp.com",
-    projectId: "sht-app-e6cf8",
-    storageBucket: "sht-app-e6cf8.firebasestorage.app",
-    messagingSenderId: "15096527758",
-    appId: "1:15096527758:web:520b23be74ac5be0bec2df",
-    measurementId: "G-QQFNLZPL3K"
-  };
-  const USERNAME_AUTH_DOMAIN = "sht-teacher.internal";
+<script>
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
 
-  const app = initializeApp(firebaseConfig);
-  const teacherAuth = getAuth(app);              // used for teacher login/signup
-  const db = getFirestore(app);
-  const usernameToEmail = (u) => `${u.trim().toLowerCase()}@${USERNAME_AUTH_DOMAIN}`;
-  const splitList = (s) => s.split(",").map(x=>x.trim()).filter(Boolean);
-  const initials = (name) => name.split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase();
+  // mobile menu (simple toggle of nav-links display)
+  const burger = document.querySelector('.burger');
+  const navLinks = document.querySelector('.nav-links');
+  burger.addEventListener('click', ()=>{
+    const showing = navLinks.style.display === 'flex';
+    navLinks.style.display = showing ? 'none' : 'flex';
+    navLinks.style.cssText += showing ? '' : 'position:fixed;top:74px;left:0;right:0;background:#0e1424;flex-direction:column;padding:24px 28px;gap:20px;border-bottom:1px solid rgba(246,241,230,0.14);';
+  });
 
-  // ---------- Dropdown + chip multi-select (subjects / boards / classes) ----------
-  const OPTION_LISTS = {
-    subjects: ["Mathematics","Science","English","Physics","Chemistry","Biology","Accounts","Economics","Computer Science","Hindi","Marathi","Social Studies"],
-    boards: ["CBSE","ICSE","State Board","IB","IGCSE"],
-    classes: ["1-5","6-8","9-10","11-12"]
-  };
-  const multiSelectState = {};
-  function renderChips(prefix){
-    const el = document.getElementById(prefix+"-chips");
-    el.innerHTML = multiSelectState[prefix].map(v =>
-      `<span class="chip">${v}<button type="button" class="chip-x" data-prefix="${prefix}" data-val="${v}">×</button></span>`
-    ).join("");
-    el.querySelectorAll(".chip-x").forEach(btn=>{
-      btn.onclick = () => {
-        multiSelectState[prefix] = multiSelectState[prefix].filter(v => v !== btn.dataset.val);
-        renderChips(prefix);
-      };
+  // world clock
+  const cityEls = document.querySelectorAll('.city-time');
+  function updateClocks(){
+    cityEls.forEach(el=>{
+      const tz = el.getAttribute('data-tz');
+      try{
+        el.textContent = new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:tz}).format(new Date());
+      }catch(e){ el.textContent='--:--'; }
     });
   }
-  function setupMultiSelect(prefix, listKey, initial){
-    multiSelectState[prefix] = [...(initial||[])];
-    const select = document.getElementById(prefix+"-select");
-    select.innerHTML = '<option value="">+ Add ' + listKey.slice(0,-1) + '</option>' +
-      OPTION_LISTS[listKey].map(o=>`<option value="${o}">${o}</option>`).join("");
-    select.onchange = () => {
-      const v = select.value;
-      if(v && !multiSelectState[prefix].includes(v)) multiSelectState[prefix].push(v);
-      select.value = "";
-      renderChips(prefix);
-    };
-    renderChips(prefix);
-  }
-  setupMultiSelect("su-subjects", "subjects");
-  setupMultiSelect("su-boards", "boards");
-  setupMultiSelect("su-classes", "classes");
+  updateClocks();
+  setInterval(updateClocks, 15000);
 
-  // ---------- ROUTER: only one section visible at a time ----------
-  const sections = { parent: "view-parent", teacher: "view-teacher", admin: "view-admin" };
-  function route(){
-    const hash = (location.hash || "").replace("#","");
-    const key = sections[hash] ? hash : "parent";
-    Object.values(sections).forEach(id => document.getElementById(id).classList.add("hidden"));
-    document.getElementById(sections[key]).classList.remove("hidden");
+  // hero course image carousel
+  (function(){
+    const track = document.getElementById('carouselTrack');
+    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+    const dots = Array.from(document.querySelectorAll('#carouselDots .dot'));
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
+    let idx = 0;
+    let autoTimer;
 
-    document.getElementById("teacher-link").classList.toggle("hidden", key !== "parent");
-    document.getElementById("page-title").textContent = key==="admin" ? "Special Home Tuitions — Admin" : key==="teacher" ? "Teacher Portal" : "Special Home Tuitions";
-    document.getElementById("page-sub").textContent = key==="admin" ? "Private — approvals and moderation only"
-      : key==="teacher" ? "Register your profile and manage it" : "Find verified teachers near you — connect on WhatsApp in one tap";
-  }
-  window.addEventListener("hashchange", route);
-  route();
+    function render(){
+      const pct = idx * (100 / slides.length);
+      track.style.transform = `translateX(-${pct}%)`;
+      dots.forEach((d,i)=>d.classList.toggle('active', i===idx));
+    }
+    function goTo(i){
+      idx = (i + slides.length) % slides.length;
+      render();
+      restartAuto();
+    }
+    function restartAuto(){
+      clearInterval(autoTimer);
+      autoTimer = setInterval(()=>goTo(idx+1), 6000);
+    }
 
-  // ================= PARENT SEARCH =================
-  let ALL_TEACHERS = [];
-  function renderResults(list){
-    const wrap = document.getElementById("results");
-    document.getElementById("results-count").textContent = list.length + (list.length===1 ? " teacher found" : " teachers found");
-    if(list.length===0){ wrap.innerHTML = '<div class="empty">No teachers match yet — try widening a filter.</div>'; return; }
-    wrap.innerHTML = list.map(t=>{
-      const msg = encodeURIComponent(`Hi ${t.name}, I found your profile on Special Home Tuitions. I'm looking for a ${t.subjects?.[0]||''} teacher for ${t.boards?.[0]||''} Class ${t.classes?.[0]||''} (${t.mode}). Are you available?`);
-      return `<div class="teacher-card">
-        <div class="avatar">${initials(t.name)}</div>
-        <div class="t-body">
-          <span class="t-name">${t.name}</span>${t.verified?'<span class="badge">VERIFIED</span>':''}
-          <div class="t-meta">${t.experience||''} experience · Pincode ${t.pincode||''}</div>
-          <div class="tags">${(t.subjects||[]).map(s=>`<span class="tag">${s}</span>`).join('')}${(t.boards||[]).map(b=>`<span class="tag">${b}</span>`).join('')}<span class="tag">${t.mode}</span></div>
-          <button class="wa-btn" data-id="${t.id}" data-phone="${t.whatsapp}" data-msg="${msg}">WhatsApp</button>
-        </div></div>`;
-    }).join("");
-    wrap.querySelectorAll(".wa-btn").forEach(btn=>{
-      btn.addEventListener("click", async ()=>{
-        const {id, phone, msg} = btn.dataset;
-        window.open(`https://wa.me/${phone}?text=${msg}`, "_blank");
-        try{ await updateDoc(doc(db,"teachers",id), { whatsappClicks: increment(1) }); }catch(e){}
+    prevBtn.addEventListener('click', ()=>goTo(idx-1));
+    nextBtn.addEventListener('click', ()=>goTo(idx+1));
+    dots.forEach(d=>d.addEventListener('click', ()=>goTo(parseInt(d.getAttribute('data-i'),10))));
+
+    function openCourse(targetId){
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.getAttribute('data-tab')==='new'));
+      document.querySelectorAll('.tab-panel').forEach(p=>{ p.style.display = (p.getAttribute('data-panel')==='new') ? 'grid' : 'none'; });
+      const el = document.getElementById(targetId);
+      if(el){
+        el.scrollIntoView({behavior:'smooth', block:'center'});
+        el.classList.add('highlight');
+        setTimeout(()=>el.classList.remove('highlight'), 1700);
+      }
+    }
+    slides.forEach(s=>{
+      s.addEventListener('click', ()=>openCourse(s.getAttribute('data-target')));
+      s.addEventListener('keydown', (e)=>{
+        if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openCourse(s.getAttribute('data-target')); }
       });
     });
-  }
-  function applyFilters(){
-    const subject = document.getElementById("f-subject").value;
-    const board = document.getElementById("f-board").value;
-    const cls = document.getElementById("f-class").value;
-    const mode = document.getElementById("f-mode").value;
-    const pincode = document.getElementById("f-pincode").value.trim();
-    renderResults(ALL_TEACHERS.filter(t=>{
-      if(subject && !(t.subjects||[]).includes(subject)) return false;
-      if(board && !(t.boards||[]).includes(board)) return false;
-      if(cls && !(t.classes||[]).includes(cls)) return false;
-      if(mode && t.mode!=="Both" && t.mode!==mode) return false;
-      if(pincode && t.pincode!==pincode) return false;
-      return true;
-    }));
-  }
-  document.getElementById("search-btn").onclick = applyFilters;
-  (async () => {
-    try{
-      const q = query(collection(db,"teachers"), where("status","==","approved"), where("active","==",true));
-      const snap = await getDocs(q);
-      ALL_TEACHERS = snap.docs.map(d=>({id:d.id, ...d.data()}));
-      renderResults(ALL_TEACHERS);
-    }catch(e){
-      document.getElementById("results").innerHTML = '<div class="empty">Could not load teachers — check your Firebase config.</div>';
-    }
+
+    render();
+    restartAuto();
   })();
 
-  // ================= TEACHER PORTAL =================
-  document.getElementById("tab-login").onclick = () => {
-    document.getElementById("tab-login").classList.add("active");
-    document.getElementById("tab-signup").classList.remove("active");
-    document.getElementById("login-form").classList.remove("hidden");
-    document.getElementById("signup-form").classList.add("hidden");
-  };
-  document.getElementById("tab-signup").onclick = () => {
-    document.getElementById("tab-signup").classList.add("active");
-    document.getElementById("tab-login").classList.remove("active");
-    document.getElementById("signup-form").classList.remove("hidden");
-    document.getElementById("login-form").classList.add("hidden");
-  };
-  function tMsg(text,type){ document.getElementById("teacher-msg").innerHTML = `<div class="msg ${type}">${text}</div>`; }
-
-  // Friendlier text for common Firebase Auth error codes
-  function friendlyAuthError(err){
-    const code = err.code || "";
-    if(code.includes("invalid-credential") || code.includes("wrong-password") || code.includes("user-not-found"))
-      return "Incorrect username/email or password — or this account doesn't exist yet.";
-    if(code.includes("email-already-in-use")) return "That username is already taken — try another.";
-    if(code.includes("weak-password")) return "Password must be at least 6 characters.";
-    if(code.includes("invalid-email")) return "That doesn't look like a valid email/username format.";
-    return err.message.replace("Firebase: ","");
-  }
-
-  document.getElementById("signup-btn").onclick = async () => {
-    const name = document.getElementById("su-name").value.trim();
-    const username = document.getElementById("su-username").value.trim();
-    const password = document.getElementById("su-password").value;
-    if(!name || !username || password.length < 6){ tMsg("Fill in name, username, and a 6+ character password.","error"); return; }
-    try{
-      const cred = await createUserWithEmailAndPassword(teacherAuth, usernameToEmail(username), password);
-      await setDoc(doc(db,"teachers",cred.user.uid), {
-        name, username,
-        phone: document.getElementById("su-phone").value.trim(),
-        whatsapp: document.getElementById("su-whatsapp").value.trim(),
-        subjects: multiSelectState["su-subjects"],
-        boards: multiSelectState["su-boards"],
-        classes: multiSelectState["su-classes"],
-        mode: document.getElementById("su-mode").value,
-        pincode: document.getElementById("su-pincode").value.trim(),
-        experience: document.getElementById("su-exp").value.trim(),
-        status:"pending", active:true, verified:false, whatsappClicks:0, createdAt: serverTimestamp()
-      });
-      tMsg("Registered! Your profile is pending admin approval.","ok");
-    }catch(err){ tMsg(friendlyAuthError(err),"error"); }
-  };
-  document.getElementById("login-btn").onclick = async () => {
-    const username = document.getElementById("login-username").value.trim();
-    const password = document.getElementById("login-password").value;
-    if(!username || !password){ tMsg("Enter your username and password.","error"); return; }
-    try{ await signInWithEmailAndPassword(teacherAuth, usernameToEmail(username), password); }
-    catch(err){ tMsg(friendlyAuthError(err),"error"); }
-  };
-  document.getElementById("forgot-link").onclick = (e) => { e.preventDefault(); tMsg("OTP-based recovery will be added in the next phase.","ok"); };
-  document.getElementById("teacher-logout-btn").onclick = () => signOut(teacherAuth);
-
-  onAuthStateChanged(teacherAuth, async (user) => {
-    if(!user){
-      document.getElementById("teacher-auth-card").classList.remove("hidden");
-      document.getElementById("teacher-dash-card").classList.add("hidden");
-      return;
-    }
-    document.getElementById("teacher-auth-card").classList.add("hidden");
-    document.getElementById("teacher-dash-card").classList.remove("hidden");
-    const snap = await getDoc(doc(db,"teachers",user.uid));
-    if(!snap.exists()) return;
-    const t = snap.data();
-    const cls = t.status==="approved"?"status-approved":t.status==="rejected"?"status-rejected":"status-pending";
-    const lbl = t.status==="approved"?"Approved — live in search":t.status==="rejected"?"Rejected — contact admin":"Pending admin approval";
-    document.getElementById("status-pill-wrap").innerHTML = `<span class="status-pill ${cls}">${lbl}</span>`;
-    document.getElementById("stat-clicks").textContent = t.whatsappClicks||0;
-    document.getElementById("stat-active").textContent = t.active ? "Active":"Paused";
-    document.getElementById("active-toggle").checked = !!t.active;
-    document.getElementById("ed-name").value = t.name||"";
-    document.getElementById("ed-whatsapp").value = t.whatsapp||"";
-    setupMultiSelect("ed-subjects", "subjects", t.subjects||[]);
-    setupMultiSelect("ed-boards", "boards", t.boards||[]);
-    setupMultiSelect("ed-classes", "classes", t.classes||[]);
-    document.getElementById("ed-mode").value = t.mode||"Online";
-    document.getElementById("ed-pincode").value = t.pincode||"";
-    document.getElementById("ed-exp").value = t.experience||"";
-    document.getElementById("active-toggle").onchange = async (e) => {
-      await updateDoc(doc(db,"teachers",user.uid), { active: e.target.checked });
-      document.getElementById("stat-active").textContent = e.target.checked ? "Active":"Paused";
-    };
-    document.getElementById("save-btn").onclick = async () => {
-      await updateDoc(doc(db,"teachers",user.uid), {
-        name: document.getElementById("ed-name").value.trim(),
-        whatsapp: document.getElementById("ed-whatsapp").value.trim(),
-        subjects: multiSelectState["ed-subjects"],
-        boards: multiSelectState["ed-boards"],
-        classes: multiSelectState["ed-classes"],
-        mode: document.getElementById("ed-mode").value,
-        pincode: document.getElementById("ed-pincode").value.trim(),
-        experience: document.getElementById("ed-exp").value.trim()
-      });
-      alert("Profile updated.");
-    };
-  });
-
-  // ================= ADMIN PANEL =================
-  // Separate Auth instance so an admin login doesn't collide with a teacher session.
-  // IMPORTANT: Firestore reads must use a Firestore instance tied to THIS SAME app,
-  // otherwise Firestore can't see the admin's login and permission checks fail.
-  const adminApp = initializeApp(firebaseConfig, "adminApp");
-  const adminAuth = getAuth(adminApp);
-  const adminDb = getFirestore(adminApp);
-
-  function aMsg(text){ document.getElementById("admin-msg").innerHTML = `<div class="msg error">${text}</div>`; }
-  document.getElementById("admin-login-btn").onclick = async () => {
-    const email = document.getElementById("admin-email").value.trim();
-    const password = document.getElementById("admin-password").value;
-    try{ await signInWithEmailAndPassword(adminAuth, email, password); }
-    catch(err){ aMsg(friendlyAuthError(err)); }
-  };
-  document.getElementById("admin-logout-btn").onclick = () => signOut(adminAuth);
-
-  onAuthStateChanged(adminAuth, async (user) => {
-    if(!user){
-      document.getElementById("admin-login-card").classList.remove("hidden");
-      document.getElementById("admin-dash").classList.add("hidden");
-      return;
-    }
-    const adminDoc = await getDoc(doc(adminDb,"admins",user.uid));
-    if(!adminDoc.exists()){ aMsg("This account is not authorized as admin."); await signOut(adminAuth); return; }
-    document.getElementById("admin-login-card").classList.add("hidden");
-    document.getElementById("admin-dash").classList.remove("hidden");
-    loadAdminDashboard();
-  });
-
-  function adminRow(t, opts){
-    return `<div class="admin-row" data-id="${t.id}">
-      <div><div class="who">${t.name||"(no name)"} ${t.verified?"✅":""}</div>
-      <div class="sub">${(t.subjects||[]).join(", ")} · ${(t.boards||[]).join(", ")} · ${t.pincode||""} · ${t.whatsappClicks||0} clicks</div></div>
-      <div class="pill-row">${opts}</div></div>`;
-  }
-  async function loadAdminDashboard(){
-    const snap = await getDocs(collection(adminDb,"teachers"));
-    const all = snap.docs.map(d=>({id:d.id, ...d.data()}));
-    document.getElementById("a-stat-total").textContent = all.length;
-    const pending = all.filter(t=>t.status==="pending");
-    const approved = all.filter(t=>t.status==="approved");
-    document.getElementById("a-stat-pending").textContent = pending.length;
-    document.getElementById("pending-list").innerHTML = pending.length ? pending.map(t=>adminRow(t,
-      `<button class="pill approve" data-action="approve" data-id="${t.id}">Approve</button>
-       <button class="pill reject" data-action="reject" data-id="${t.id}">Reject</button>`)).join("")
-      : '<div class="empty">No pending registrations.</div>';
-    document.getElementById("approved-list").innerHTML = approved.length ? approved.map(t=>adminRow(t,
-      `<button class="pill verify" data-action="toggleVerify" data-id="${t.id}">${t.verified?"Unverify":"Verify"}</button>
-       <button class="pill reject" data-action="suspend" data-id="${t.id}">${t.active===false?"Unsuspend":"Suspend"}</button>`)).join("")
-      : '<div class="empty">No approved teachers yet.</div>';
-    document.querySelectorAll("[data-action]").forEach(btn=>{
-      btn.addEventListener("click", async () => {
-        const id = btn.dataset.id, action = btn.dataset.action, ref = doc(adminDb,"teachers",id);
-        if(action==="approve") await updateDoc(ref, { status:"approved" });
-        if(action==="reject") await updateDoc(ref, { status:"rejected" });
-        if(action==="toggleVerify"){ const s=await getDoc(ref); await updateDoc(ref,{verified:!s.data().verified}); }
-        if(action==="suspend"){ const s=await getDoc(ref); await updateDoc(ref,{active: s.data().active===false ? true:false}); }
-        loadAdminDashboard();
+  // offers tabs
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const tab = btn.getAttribute('data-tab');
+      document.querySelectorAll('.tab-panel').forEach(p=>{
+        p.style.display = (p.getAttribute('data-panel')===tab) ? 'grid' : 'none';
       });
     });
-  }
+  });
+
+  // program tabs
+  document.querySelectorAll('.prog-tab').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.prog-tab').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const prog = btn.getAttribute('data-prog');
+      document.querySelectorAll('.prog-panel').forEach(p=>{
+        p.style.display = (p.getAttribute('data-panel')===prog) ? 'contents' : 'none';
+      });
+    });
+  });
+
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.addEventListener('click', ()=>{
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
 </script>
+
 </body>
 </html>
