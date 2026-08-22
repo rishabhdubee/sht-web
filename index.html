@@ -160,7 +160,7 @@
   }
   .carousel-track{display:flex;height:100%;transition:transform .55s cubic-bezier(.65,.05,.36,1);}
   .carousel-slide{
-    min-width:100%;height:100%;position:relative;cursor:pointer;
+    flex-shrink:0;height:100%;position:relative;cursor:pointer;
     display:flex;flex-direction:column;justify-content:flex-end;padding:28px;
     color:var(--cream);
   }
@@ -900,8 +900,15 @@
     let idx = 0;
     let autoTimer;
 
+    // Give the track and each slide explicit, deterministic widths instead of
+    // relying on flex overflow — this is what makes the translateX math reliable
+    // across every browser.
+    const n = slides.length;
+    track.style.width = (n * 100) + '%';
+    slides.forEach(s => { s.style.width = (100 / n) + '%'; s.style.minWidth = (100 / n) + '%'; });
+
     function render(){
-      const pct = idx * (100 / slides.length);
+      const pct = idx * (100 / n);
       track.style.transform = `translateX(-${pct}%)`;
       dots.forEach((d,i)=>d.classList.toggle('active', i===idx));
     }
@@ -912,7 +919,7 @@
     }
     function restartAuto(){
       clearInterval(autoTimer);
-      autoTimer = setInterval(()=>goTo(idx+1), 6000);
+      autoTimer = setInterval(()=>goTo(idx+1), 3500);
     }
 
     prevBtn.addEventListener('click', ()=>goTo(idx-1));
